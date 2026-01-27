@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELON SCUM PROJECT | Официальный сайт</title>
+	<meta name="description" content="ELON PROJECT - Эксклюзивные серверы SCUM. PvP, Высокий лут, Стабильный FPS. Присоединяйся!">
+	<meta property="og:title" content="ELON SCUM PROJECT | Официальный сайт">
+	<meta property="og:description" content="Лучшие сервера SCUM. Мониторинг онлайна, правила и бонусы.">
+	<meta property="og:image" content="ССЫЛКА_НА_КРАСИВУЮ_КАРТИНКУ_СЕРВЕРА.jpg">
+	<meta property="og:url" content="https://reibik.github.io/website-scum/">
+	<meta property="og:type" content="website">
+	<meta name="theme-color" content="#ff6600">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
@@ -257,7 +264,7 @@
             <a href="index.html" class="active">🏠 Главная</a>
             <a href="status.html">📡 Статус</a>
             <a href="news.html">📰 Новости</a>
-            <a href="rules.html">📜 Правила</a>
+            <button class="btn-link" onclick="openModal()">Правила сервера</button>
             <a href="donate.html" class="donate">💰 Донат</a>
             <a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
         </nav>
@@ -373,5 +380,18 @@ async function updateOnline() {
         // Обновляем каждые 30 секунд (имитация)
         setInterval(updateOnline, 30000);
     </script>
+	<div id="rulesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>📜 Правила ELON PROJECT</h2>
+        <div class="rules-text">
+            <p>1. Запрещено использование читов и багов.</p>
+            <p>2. Уважительное общение в чате.</p>
+            <p>3. Запрещена застройка военных объектов.</p>
+            <p>4. PvP разрешено везде, кроме Safe Zone.</p>
+            </div>
+    </div>
+</div>
 </body>
+
 </html>
