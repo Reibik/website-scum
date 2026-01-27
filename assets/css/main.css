@@ -30,3 +30,31 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+/* Стили модального окна */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.8); 
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    background: #1a1a1f;
+    margin: 10% auto; 
+    padding: 30px; 
+    border: 1px solid var(--primary); 
+    width: 80%; 
+    max-width: 600px;
+    border-radius: 10px;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255, 102, 0, 0.3);
+}
+.close-btn {
+    position: absolute; top: 10px; right: 20px;
+    font-size: 30px; cursor: pointer; color: #aaa;
+}
+.close-btn:hover { color: var(--primary); }
+.rules-text p { margin-bottom: 10px; line-height: 1.5; color: #ccc; }
