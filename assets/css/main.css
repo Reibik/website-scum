@@ -1,0 +1,32 @@
+:root {
+    --primary: #ff6600;
+    --accent: #00d2ff;
+    --bg-dark: #0a0a0c;
+    --bg-card: rgba(20,20,25,0.85);
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --glass: rgba(255,255,255,0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    background-image:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+        url('https://i.postimg.cc/L4TtXw7n/Gemini-Generated-Image-vvg9bpvvg9bpvvg9.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}

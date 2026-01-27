@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELON SCUM PROJECT | Серверы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff6600; /* Оранжевый */
+            --secondary: #00d2ff; /* Голубой */
+            --bg-dark: #0a0a0c;
+            --bg-card: rgba(20, 20, 25, 0.85);
+            --text-main: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* Фон */
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+        .logo span { color: var(--primary); }
+
+        /* --- Hero --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+        }
+        .hero p { font-size: 1.2rem; color: #ccc; }
+
+        /* --- SERVERS GRID --- */
+        .servers-container {
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .server-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .server-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        /* Цветовые полоски сверху */
+        .server-card.s1 { border-top: 4px solid var(--primary); }
+        .server-card.s2 { border-top: 4px solid var(--secondary); }
+
+        .server-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #555; /* Серый по умолчанию, меняется JS */
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: background 0.3s;
+        }
+
+        .server-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* Прогресс бар */
+        .online-wrapper { margin-bottom: 25px; }
+        
+        .online-stats-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%; /* Меняется JS */
+            transition: width 1s ease-in-out;
+        }
+
+        /* Цвета баров */
+        .s1 .progress-fill { background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+        .s2 .progress-fill { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+
+        /* Кнопка IP */
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+
+        .s1 .copy-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+        .s2 .copy-btn:hover { background: var(--secondary); color: #000; border-color: var(--secondary); }
+
+        /* --- Footer & Links --- */
+        .links-area { text-align: center; padding-bottom: 50px; }
+        
+        .btn-link {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 30px;
+            border: 1px solid var(--primary);
+            margin: 0 10px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        
+        .btn-link:hover { background: var(--primary); color: #000; }
+        .discord-btn { border-color: #5865F2; }
+        .discord-btn:hover { background: #5865F2; color: #fff; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .servers-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ELON<span>PROJECT</span></div>
+    </header>
+
+    <section class="hero">
+        <h1>Выберите свой путь</h1>
+        <p>Два уникальных сервера. Одна экосистема. Максимальное качество.</p>
+    </section>
+
+    <div class="servers-container">
+        
+        <div class="server-card s1">
+            <div class="server-header">
+                <div class="status-dot" id="dot-1"></div>
+                <div class="server-name">ELON #1 [PvE/Loot x5]</div>
+            </div>
+
+            <div class="online-wrapper">
+                <div class="online-stats-text">
+                    <span>Игроков:</span>
+                    <span id="text-1">Загрузка...</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill" id="bar-1"></div>
+                </div>
+            </div>
+            
+            <button class="copy-btn" onclick="copyIP('62.183.21.227:9024')">Скопировать IP</button>
+        </div>
+
+        <div class="server-card s2">
+            <div class="server-header">
+                <div class="status-dot" id="dot-2"></div>
+                <div class="server-name">ELON #2 [PvP/Loot x5]</div>
+            </div>
+
+            <div class="online-wrapper">
+                <div class="online-stats-text">
+                    <span>Игроков:</span>
+                    <span id="text-2">Загрузка...</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill" id="bar-2"></div>
+                </div>
+            </div>
+
+            <button class="copy-btn" onclick="copyIP('62.183.21.227:9034')">Скопировать IP</button>
+        </div>
+
+    </div>
+
+    <div class="main-actions">
+        <a href="https://discord.gg/yourlink" class="btn btn-discord">Наш Discord</a>
+        <a href="#" class="btn btn-vote">Голосовать</a>
+    </div>
+
+    <footer>
+        &copy; 2024 ELON PROJECT. Design by AI.
+    </footer>
+
+    <script>
+        // === НАСТРОЙКИ СЕРВЕРОВ (РЕДАКТИРОВАТЬ ЗДЕСЬ) ===
+        const SERVER_1_ID = '37330681'; // Вставь ID первого сервера с BattleMetrics
+        const SERVER_2_ID = '37511306'; // Вставь ID второго сервера с BattleMetrics
+        // ================================================
+
+        async function fetchServerData(battleMetricsId, textId, barId, dotId) {
+            const apiUrl = `https://api.battlemetrics.com/servers/${battleMetricsId}`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Ошибка сети');
+                
+                const data = await response.json();
+                const serverInfo = data.data.attributes;
+                
+                const currentPlayers = serverInfo.players;
+                const maxPlayers = serverInfo.maxPlayers;
+                const isOnline = serverInfo.status === 'online';
+
+                // Обновляем текст
+                document.getElementById(textId).innerText = `${currentPlayers} / ${maxPlayers}`;
+                
+                // Обновляем полоску
+                const percentage = Math.min((currentPlayers / maxPlayers) * 100, 100);
+                document.getElementById(barId).style.width = `${percentage}%`;
+
+                // Обновляем цвет точки статуса
+                const dot = document.getElementById(dotId);
+                if (isOnline) {
+                    dot.style.background = '#00ff41'; // Зеленый
+                    dot.style.boxShadow = '0 0 10px #00ff41';
+                } else {
+                    dot.style.background = '#ff0000'; // Красный
+                    dot.style.boxShadow = '0 0 10px #ff0000';
+                    document.getElementById(textId).innerText = "OFFLINE";
+                    document.getElementById(barId).style.width = "0%";
+                }
+
+            } catch (error) {
+                console.error('Ошибка получения данных:', error);
+                document.getElementById(textId).innerText = "Ошибка API";
+                document.getElementById(dotId).style.background = '#ffcc00'; // Желтый (ошибка)
+            }
+        }
+
+        function updateAllServers() {
+            fetchServerData(SERVER_1_ID, 'text-1', 'bar-1', 'dot-1');
+            fetchServerData(SERVER_2_ID, 'text-2', 'bar-2', 'dot-2');
+        }
+
+        // Копирование IP
+        function copyIP(ip) {
+            navigator.clipboard.writeText(ip).then(() => {
+                alert('IP адрес скопирован: ' + ip);
+            });
+        }
+
+        // Запуск при загрузке и обновление раз в 30 секунд
+        updateAllServers();
+        setInterval(updateAllServers, 30000); 
+    </script>
+
+</body>
+</html>

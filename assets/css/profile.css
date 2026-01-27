@@ -1,0 +1,28 @@
+.profile-page {
+    padding: 60px 0;
+}
+
+.profile-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    font-size: 1.1rem;
+}
+
+.sub-title {
+    margin-bottom: 20px;
+}
+
+.donate-history {
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 0.9rem;
+}

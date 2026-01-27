@@ -1,0 +1,100 @@
+.status-page {
+    padding: 60px 0;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 40px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255,102,0,0.4);
+}
+
+.servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.server-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    transition: transform 0.3s;
+}
+
+.server-card:hover {
+    transform: translateY(-8px);
+}
+
+.server-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.server-header h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-dot.online {
+    background: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.status-dot.offline {
+    background: #ff3b3b;
+    box-shadow: 0 0 10px #ff3b3b;
+}
+
+.status-dot.loading {
+    background: #999;
+}
+
+.server-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.server-online {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.server-online .players {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.server-online .label {
+    font-size: 0.75rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.progress {
+    background: rgba(0,0,0,0.4);
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), #ffaa00);
+    transition: width 0.5s;
+}

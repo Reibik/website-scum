@@ -1,0 +1,82 @@
+.donate-page {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.donate-sub {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.donate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.donate-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    position: relative;
+    transition: 0.3s;
+}
+
+.donate-card:hover {
+    transform: translateY(-10px);
+}
+
+.donate-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.donate-card ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.donate-card li {
+    margin: 8px 0;
+    color: #ccc;
+}
+
+.donate-card button {
+    padding: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(90deg, var(--primary), #ffaa00);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.donate-card button:hover {
+    box-shadow: 0 0 20px rgba(255,102,0,0.6);
+}
+
+.donate-card.popular {
+    border: 2px solid var(--primary);
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--primary);
+    color: black;
+    padding: 5px 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
