@@ -26,3 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 });
+// assets/js/ui.js
+
+// ... (твой старый код кнопки "Наверх") ...
+
+// --- ЛОГИКА МОБИЛЬНОГО МЕНЮ ---
+function toggleMenu() {
+    const nav = document.getElementById('mainNav');
+    const btn = document.querySelector('.mobile-menu-btn');
+    
+    // Переключаем классы
+    nav.classList.toggle('active');
+    btn.classList.toggle('active');
+    
+    // Блокируем прокрутку сайта, когда меню открыто
+    if (nav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Закрывать меню, если кликнули по ссылке (чтобы оно уехало после перехода)
+document.querySelectorAll('.nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.getElementById('mainNav');
+        const btn = document.querySelector('.mobile-menu-btn');
+        nav.classList.remove('active');
+        btn.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+});
