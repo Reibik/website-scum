@@ -1,0 +1,62 @@
+/* assets/css/toast.css */
+
+/* Контейнер для уведомлений (правый верхний угол) */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100000; /* Поверх всего, даже лоадера */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Само уведомление */
+.toast {
+    min-width: 300px;
+    background: rgba(20, 20, 25, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-left: 4px solid #fff; /* Цвет по умолчанию */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+    
+    /* Анимация появления */
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Анимация исчезновения (добавляется через JS) */
+.toast.hide {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+/* Типы уведомлений (разные цвета) */
+.toast.success { border-color: #00ff41; box-shadow: -5px 0 15px rgba(0, 255, 65, 0.1); }
+.toast.error { border-color: #ff3333; box-shadow: -5px 0 15px rgba(255, 51, 51, 0.1); }
+.toast.info { border-color: #00d2ff; box-shadow: -5px 0 15px rgba(0, 210, 255, 0.1); }
+.toast.warning { border-color: #ffcc00; }
+
+/* Иконки внутри */
+.toast-icon {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
+}

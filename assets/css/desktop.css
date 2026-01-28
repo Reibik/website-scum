@@ -1,0 +1,86 @@
+/* assets/css/desktop.css */
+
+/* ЭТИ СТИЛИ РАБОТАЮТ ТОЛЬКО НА ПК (Ширина > 992px) */
+@media (min-width: 992px) {
+
+    /* 1. КАСТОМНЫЙ КУРСОР (ПРИЦЕЛ) */
+    body {
+        /* Ссылка на картинку прицела (или крестик) */
+        cursor: crosshair; 
+    }
+    
+    a, button, .server-card, .donate-card {
+        cursor: pointer; /* Обычная рука при наведении на активные элементы */
+    }
+
+    /* 2. ВИДЕО ФОН (Герой-секция) */
+    .hero {
+        position: relative;
+        background: none !important; /* Убираем статичную картинку */
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    /* Видео, которое лежит на фоне */
+    .hero-video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.6; /* Затемнение, чтобы текст читался */
+        filter: contrast(1.1) brightness(0.8);
+    }
+    
+    /* Сетка поверх видео (эффект монитора) */
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==') repeat;
+        opacity: 0.3;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* 3. ЭФФЕКТ НАКЛОНА И СВЕЧЕНИЯ КАРТОЧЕК (HOVER) */
+    .server-card, .donate-card, .feature-card, .news-card {
+        transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    /* Мощное свечение при наведении */
+    .server-card:hover, .donate-card:hover, .feature-card:hover, .news-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 0 30px rgba(255, 102, 0, 0.4), inset 0 0 20px rgba(255, 102, 0, 0.1);
+        border-color: var(--primary);
+        z-index: 10;
+    }
+
+    /* 4. СКРОЛЛБАР (Полоса прокрутки) в стиле Киберпанк */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0c; 
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary); 
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ff8533; 
+        box-shadow: 0 0 10px var(--primary);
+    }
+}
+
+/* СКРЫВАЕМ ВИДЕО НА ТЕЛЕФОНАХ (на всякий случай) */
+@media (max-width: 991px) {
+    .hero-video-bg {
+        display: none !important;
+    }
+}
