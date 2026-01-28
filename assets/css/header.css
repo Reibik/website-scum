@@ -93,50 +93,63 @@ header {
     /* Показываем кнопку гамбургер */
     .mobile-menu-btn {
         display: block;
+        z-index: 1002; /* Кнопка всегда поверх меню */
     }
 
-    /* Скрываем кнопки WARGM на очень узких экранах или перемещаем (тут скрываем для экономии места) */
+    /* Скрываем кнопки WARGM */
     .wargm-buttons {
         display: none; 
     }
 
-    /* Меню превращается в выпадающий список */
+    /* Стили выпадающего меню */
     .nav {
         position: fixed;
         top: 0;
-        right: -100%; /* Спрятано справа */
-        width: 70%; /* Занимает 70% экрана */
-        height: 100vh;
+        right: -100%;
+        width: 80%; /* Сделал чуть шире для удобства */
+        height: 100vh; /* Высота на весь экран */
         background: #0a0a0c;
+        
+        display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* ВАЖНО: Начинаем сверху, а не от центра */
         align-items: center;
+        
         transition: 0.4s ease;
         border-left: 2px solid #ff6600;
         box-shadow: -10px 0 30px rgba(0,0,0,0.8);
-        padding-top: 60px;
-        gap: 20px;
+        
+        /* Отступы, чтобы текст не наезжал на кнопку и границы */
+        padding-top: 80px; 
+        padding-bottom: 50px; 
+        
+        /* ВАЖНО: Разрешаем прокрутку, если меню не влезает */
+        overflow-y: auto; 
+        gap: 10px; /* Расстояние между ссылками */
     }
 
     /* Состояние "Открыто" */
     .nav.active {
-        right: 0; /* Выезжает */
+        right: 0;
     }
 
     .nav a {
-        font-size: 1.2rem; /* Ссылки крупнее */
-        width: 80%;
+        font-size: 1.1rem;
+        width: 85%;
         text-align: center;
         border-bottom: 1px solid rgba(255,255,255,0.05);
-        padding: 15px;
+        padding: 15px 10px;
+        display: block; /* Чтобы ссылка занимала всю ширину блока */
+        flex-shrink: 0; /* Чтобы ссылки не сплющивались */
     }
     
     .nav a:hover, .nav a.active {
         background: var(--primary);
         color: #000;
+        transform: none; /* Убираем сдвиги на мобильном, они могут глючить */
     }
 
-    /* Анимация превращения гамбургера в крестик */
+    /* Анимация крестика */
     .mobile-menu-btn.active span:nth-child(1) {
         transform: rotate(45deg) translate(8px, 6px);
         background-color: #ff6600;
