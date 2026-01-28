@@ -111,7 +111,44 @@
             </div>
 
         </div>
+		<div class="dev-support-wrapper">
+            <div class="dev-card">
+                <div class="dev-content">
+                    <div class="dev-header">
+                        <h2>🏗️ Фонд Развития</h2>
+                        <span class="badge-dev">ДОБРОВОЛЬНОЕ ПОЖЕРТВОВАНИЕ</span>
+                    </div>
+                    <p class="dev-desc">
+                        Прямая поддержка жизни сервера. Средства идут на оплату мощного железа, 
+                        заказ кастомных скриптов и рекламу. <br>
+                        <span style="color: #aaa; font-size: 0.9rem;">(Без выдачи игровых предметов, только респект и роль в Discord)</span>
+                    </p>
 
+                    <div class="goal-container">
+                        <div class="goal-labels">
+                            <span>🎯 Цель: Оплата хостинга (Январь)</span>
+                            <span class="goal-numbers"><span class="current">1 500</span> / 10 000 ₽</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 15%;">
+                                <div class="progress-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dev-action">
+                        <input type="number" id="devAmount" class="dev-input" placeholder="Сумма (₽)..." min="10">
+                        <button class="btn-dev" onclick="donateDev()">Поддержать Проект</button>
+                    </div>
+                </div>
+
+                <div class="visual-core">
+                    <div class="core-ring"></div>
+                    <div class="core-inner"></div>
+                    <div class="core-particles"></div>
+                </div>
+            </div>
+        </div>
         <div class="donate-info">
             <p>* Покупка происходит в автоматическом режиме через магазин. Выдача предметов - в течение 5 минут.</p>
         </div>
@@ -156,5 +193,4 @@
 </footer>
 
 </body>
-
 </html>

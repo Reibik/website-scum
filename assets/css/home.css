@@ -104,3 +104,203 @@ iframe { max-width: 100%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.
     .server-status { flex-direction: column; text-align: center; gap: 15px; }
     .online-stats { text-align: center; }
 }
+/* --- НОВЫЙ БЛОК СЕРВЕРОВ (Showcase) --- */
+
+.servers-showcase {
+    max-width: 1200px;
+    margin: -60px auto 60px; /* Поднимаем блок на Hero секцию */
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Карточка сервера */
+.server-card-pro {
+    position: relative;
+    height: 320px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0a0a0c;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Контент прижат к низу */
+}
+
+.server-card-pro:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-color: var(--primary);
+}
+
+/* Фоновое изображение */
+.card-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s;
+    z-index: 0;
+}
+
+.server-card-pro:hover .card-bg {
+    transform: scale(1.1); /* Зум при наведении */
+}
+
+/* Затемнение фона */
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+}
+
+/* Контент внутри */
+.card-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+}
+
+/* Заголовок и статус */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.server-card-pro h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.status-badge {
+    background: rgba(0, 255, 65, 0.2);
+    color: #00ff41;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
+}
+
+.pulse-dot {
+    width: 8px; height: 8px;
+    background: #00ff41;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff41;
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Характеристики (Loot x5 etc) */
+.card-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.card-meta span {
+    background: rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Статистика и прогресс */
+.card-stats {
+    margin-bottom: 20px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.server-progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* Кнопка IP */
+.btn-connect {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: #fff;
+    padding: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-connect:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .servers-showcase {
+        grid-template-columns: 1fr; /* Одна колонка на телефоне */
+        margin-top: 0;
+    }
+    .server-card-pro {
+        height: 280px;
+    }
+}
+/* Дополнительные стили для статуса Offline */
+.status-badge.offline {
+    border-color: #ff3333 !important;
+    color: #ff3333 !important;
+    background: rgba(255, 51, 51, 0.1) !important;
+}
+
+.status-badge.offline .pulse-dot {
+    background: #ff3333 !important;
+    box-shadow: 0 0 10px #ff3333 !important;
+    animation: none; /* Убираем пульсацию, если сервер мертв */
+}

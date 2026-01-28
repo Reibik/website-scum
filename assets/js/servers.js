@@ -1,63 +1,66 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Находим все карточки серверов на странице
-    const serverCards = document.querySelectorAll('.server-card');
+// assets/js/servers.js
 
-    serverCards.forEach(card => {
-        const serverId = card.getAttribute('data-id'); // Берем ID из HTML
-        if (serverId) {
-            fetchServerData(serverId, card);
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.server-card');
+
+    cards.forEach(card => {
+        const serverId = card.getAttribute('data-id'); // Берет ID из HTML
+        updateServerCard(card, serverId);
     });
+
+    // Обновляем каждые 60 секунд
+    setInterval(() => {
+        cards.forEach(card => {
+            const serverId = card.getAttribute('data-id');
+            updateServerCard(card, serverId);
+        });
+    }, 60000);
 });
 
-async function fetchServerData(id, cardElement) {
-    const apiUrl = `https://api.battlemetrics.com/servers/${id}`;
-    
-    // Элементы внутри текущей карточки, которые будем менять
-    const playersElement = cardElement.querySelector('.players');
-    const dotElement = cardElement.querySelector('.status-dot');
-    const barElement = cardElement.querySelector('.progress-bar');
+async function updateServerCard(card, id) {
+    const playersEl = card.querySelector('.players');
+    const labelEl = card.querySelector('.label');
+    const barEl = card.querySelector('.progress-bar');
+    const dotEl = card.querySelector('.status-dot');
 
     try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('Ошибка сети');
+        const response = await fetch(`https://api.battlemetrics.com/servers/${id}`);
         
-        const data = await response.json();
-        const info = data.data.attributes;
+        if (!response.ok) throw new Error('Network error');
+        
+        const json = await response.json();
+        const data = json.data.attributes;
+        const isOnline = data.status === 'online';
 
-        // 1. Обновляем цифры онлайна
-        const currentPlayers = info.players;
-        const maxPlayers = info.maxPlayers;
-        playersElement.innerText = `${currentPlayers} / ${maxPlayers}`;
+        if (isOnline) {
+            // Онлайн
+            const current = data.players;
+            const max = data.maxPlayers;
+            const percent = Math.min((current / max) * 100, 100);
 
-        // 2. Обновляем полоску прогресса
-        // Ограничиваем 100%, чтобы не вылезало
-        const percentage = Math.min((currentPlayers / maxPlayers) * 100, 100);
-        barElement.style.width = `${percentage}%`;
+            playersEl.innerText = `${current} / ${max}`;
+            labelEl.innerText = 'Игроков онлайн';
+            barEl.style.width = `${percent}%`;
+            
+            // Цвет точки и полоски в зависимости от заполненности
+            if (percent > 90) {
+                barEl.style.backgroundColor = '#ff3333'; // Красный (полный)
+            } else {
+                barEl.style.backgroundColor = 'var(--primary)'; // Оранжевый
+            }
 
-        // 3. Статус (Онлайн/Оффлайн)
-        if (info.status === 'online') {
-            dotElement.classList.remove('loading');
-            dotElement.classList.add('online');
-            dotElement.style.background = '#00ff41';
-            dotElement.style.boxShadow = '0 0 10px #00ff41';
+            dotEl.className = 'status-dot online'; // Зеленая точка
         } else {
-            setOfflineStyle(playersElement, dotElement, barElement);
+            // Оффлайн
+            throw new Error('Server offline');
         }
 
     } catch (error) {
-        console.error(`Не удалось загрузить сервер ${id}:`, error);
-        setOfflineStyle(playersElement, dotElement, barElement);
+        // Если ошибка или сервер выключен
+        playersEl.innerText = "OFFLINE";
+        playersEl.style.color = "#ff3333";
+        labelEl.innerText = "Сервер недоступен";
+        barEl.style.width = "0%";
+        dotEl.className = 'status-dot offline'; // Красная точка
     }
-}
-
-function setOfflineStyle(playersRef, dotRef, barRef) {
-    playersRef.innerText = 'OFFLINE';
-    playersRef.style.color = '#ff3333';
-    
-    dotRef.classList.remove('loading');
-    dotRef.style.background = '#ff3333';
-    dotRef.style.boxShadow = 'none';
-    
-    barRef.style.width = '0%';
 }

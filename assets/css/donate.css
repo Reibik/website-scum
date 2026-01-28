@@ -176,3 +176,220 @@
     .donate-card.popular { transform: none; }
     .donate-card.popular:hover { transform: translateY(-10px); }
 }
+/* --- БЛОК РАЗРАБОТКИ (DEV SUPPORT) --- */
+
+.dev-support-wrapper {
+    margin: 60px 0 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dev-card {
+    width: 100%;
+    max-width: 1000px; /* Широкий блок */
+    background: linear-gradient(135deg, rgba(30, 30, 35, 0.95), rgba(15, 15, 20, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 5px solid var(--primary); /* Оранжевый акцент слева */
+    border-radius: 15px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Контент слева */
+.dev-content {
+    flex: 1;
+    z-index: 2;
+    padding-right: 40px;
+}
+
+.dev-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.dev-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+}
+
+.badge-dev {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 1px solid var(--primary);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.dev-desc {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Прогресс бар (Цель) */
+.goal-container {
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.goal-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.goal-numbers {
+    color: var(--primary);
+}
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: #111;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary); /* Оранжевый */
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Блик на полоске */
+.progress-glow {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* Форма ввода и кнопка */
+.dev-action {
+    display: flex;
+    gap: 15px;
+}
+
+.dev-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    width: 150px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.dev-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+}
+
+.btn-dev {
+    flex: 1;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.btn-dev:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+}
+
+/* --- АНИМАЦИЯ ЯДРА (VISUAL CORE) --- */
+.visual-core {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Чтобы не сжималось */
+}
+
+/* Внешнее кольцо */
+.core-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-top-color: var(--primary);
+    border-bottom-color: var(--primary);
+    border-radius: 50%;
+    animation: spinCore 4s linear infinite;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+}
+
+/* Внутреннее ядро */
+.core-inner {
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, #ff6600 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: pulseCore 2s ease-in-out infinite;
+}
+
+@keyframes spinCore {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseCore {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px var(--primary); }
+    100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 900px) {
+    .dev-card { flex-direction: column-reverse; padding: 20px; text-align: center; }
+    .dev-content { padding-right: 0; }
+    .dev-header { justify-content: center; }
+    .visual-core { margin-bottom: 20px; transform: scale(0.8); }
+    .dev-action { flex-direction: column; }
+    .dev-input { width: 100%; }
+}

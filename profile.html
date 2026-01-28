@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет | ELON SCUM PROJECT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+
+    <script defer src="assets/js/profile.js"></script>
+    <script defer src="assets/js/ui.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">ELON <span>PROJECT</span></div>
+        <nav class="nav">
+            <a href="index.html">🏠 Главная</a>
+            <a href="status.html">📡 Статус</a>
+            <a href="news.html">📰 Новости</a>
+            <a href="donate.html">💰 Донат</a>
+            <a href="profile.html" class="active">👤 Кабинет</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container profile-page">
+    <h1 class="page-title">👤 Личный кабинет</h1>
+
+    <div class="profile-card">
+        <div class="profile-row"><span>Ник:</span><b id="username">—</b></div>
+        <div class="profile-row"><span>Статус:</span><b id="status">—</b></div>
+        <div class="profile-row"><span>Донат:</span><b id="donate">—</b></div>
+        <div class="profile-row"><span>Баланс:</span><b id="balance">— ₽</b></div>
+    </div>
+
+    <h2 class="sub-title">💳 История доната</h2>
+    <div class="donate-history" id="history"></div>
+</main>
+
+</body>
+</html>

@@ -23,3 +23,33 @@ function buyPack(packName, price) {
         }
     }
 }
+// Функция для блока "Фонд Развития"
+function donateDev() {
+    const input = document.getElementById('devAmount');
+    const amount = input.value;
+
+    if (!amount || amount < 50) {
+        // Если у тебя подключен toast.js, используй showToast
+        if (typeof showToast === 'function') {
+            showToast('Минимальная сумма пожертвования: 50₽', 'warning');
+        } else {
+            alert('Минимальная сумма пожертвования: 50₽');
+        }
+        return;
+    }
+
+    // Если у тебя подключен toast.js
+    if (typeof showToast === 'function') {
+        showToast(`Переход к оплате: ${amount}₽`, 'success');
+    }
+
+    // Задержка для красоты и переадресация
+    // ЗАМЕНИ ССЫЛКУ на твою реальную (DonationAlerts, Qiwi, Boosty или канал Discord)
+    setTimeout(() => {
+        // Пример ссылки на DonationAlerts с предустановленной суммой
+        window.open(`https://www.donationalerts.com/r/jungler?amount=${amount}`, '_blank');
+        
+        // Или просто в Дискорд, как раньше:
+        //window.open("https://discord.com/invite/tkCmnaQRdX", "_blank");
+    }, 1000);
+}
