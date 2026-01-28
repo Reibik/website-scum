@@ -1,0 +1,95 @@
+/* assets/css/map.css */
+
+/* Контейнер страницы */
+.map-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 100%; /* Растягиваем на всю ширину */
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Панель управления (заголовок и подсказка) */
+.map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 1600px; /* Ограничиваем ширину только заголовка */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.map-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+    margin: 0;
+}
+
+.map-hint {
+    font-family: 'Rajdhani', sans-serif;
+    color: #aaa;
+    background: rgba(255,255,255,0.05);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-left: 3px solid var(--primary);
+}
+
+/* --- ГЛАВНОЕ ИСПРАВЛЕНИЕ: Контейнер карты --- */
+.map-frame-container {
+    width: 100%;
+    /* 80vh означает 80% от высоты экрана пользователя. 
+       Карта всегда будет большой. */
+    height: 80vh; 
+    position: relative;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border-radius: 8px; /* Скруглим углы */
+    overflow: hidden;
+}
+
+/* Сама карта внутри */
+iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+/* Декоративные уголки */
+.corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .map-wrapper { padding: 10px; }
+    
+    .map-controls { 
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+    
+    .map-frame-container {
+        /* На телефонах делаем карту чуть поменьше по высоте, 
+           чтобы было удобно скроллить */
+        height: 70vh; 
+    }
+}

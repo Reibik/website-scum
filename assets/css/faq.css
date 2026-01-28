@@ -1,0 +1,105 @@
+/* assets/css/faq.css */
+
+.faq-page {
+    padding: 50px 20px;
+    max-width: 800px; /* Делаем уже, чтобы удобнее читать */
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+/* Контейнер вопросов */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Сам блок вопроса */
+.faq-item {
+    background: rgba(20, 20, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.faq-item.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.1);
+}
+
+/* Кнопка с вопросом */
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.faq-question:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.faq-question .icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: transform 0.3s;
+}
+
+/* Поворот плюсика при открытии */
+.faq-item.active .icon {
+    transform: rotate(45deg); /* Превращается в крестик */
+    color: #ff3333;
+}
+
+/* Блок с ответом (скрыт по умолчанию) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.faq-answer p {
+    padding: 20px;
+    margin: 0;
+    color: #ccc;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.faq-answer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.faq-answer a:hover {
+    text-decoration: underline;
+}

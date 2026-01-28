@@ -2,19 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Новости | ELON SCUM PROJECT</title>
+    <title>Интерактивная Карта | ELON SCUM PROJECT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/news.css">
-	<link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/map.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <script defer src="assets/js/news.js"></script>
     <script defer src="assets/js/ui.js"></script>
 </head>
 <body>
@@ -26,28 +24,38 @@
             <nav class="nav">
                 <a href="index.html">🏠 Главная</a>
                 <a href="status.html">📡 Статус</a>
-				<a href="map.html">🗺️ Карта</a>
-                <a href="news.html" class="active">📰 Новости</a>
-				<a href="media.html">📸 Медиа</a>
-				<a href="faq.html">❓ FAQ</a>
-                <a href="staff.html">👥 Команда</a> 
-				<a href="rules.html">📜 Правила</a>
+				<a href="map.html" class="active">🗺️ Карта</a>
+                <a href="news.html">📰 Новости</a>
+                <a href="media.html">📸 Медиа</a>
+                <a href="faq.html">❓ FAQ</a>
+                <a href="rules.html">📜 Правила</a>
                 <a href="donate.html" class="donate">💰 Донат</a>
-				<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
             </nav>
         </div>
-    
+        
         <div class="wargm-buttons">
             <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
             <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
         </div>
     </header>
 
-    <main class="container news-page">
-        <h1 class="page-title">📰 Новости проекта</h1>
-        <p class="page-subtitle">Последние события, обновления и вайпы</p>
+    <main class="map-wrapper">
+        <div class="map-controls">
+            <h1 class="map-title">🛰️ Спутниковая Карта</h1>
+            <div class="map-hint">
+                <span>Используйте карту для поиска бункеров и транспорта.</span>
+                <span style="color: #666; font-size: 0.8rem;">(Powered by scum-map.com)</span>
+            </div>
+        </div>
 
-        <div class="news-grid" id="newsGrid"></div>
+        <div class="map-frame-container">
+            <iframe src="https://scum-map.com/en/interactive_map" frameborder="0" allowfullscreen></iframe>
+            
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+        </div>
     </main>
 
     <footer class="site-footer">

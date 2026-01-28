@@ -2,19 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Новости | ELON SCUM PROJECT</title>
+    <title>Галерея | ELON SCUM PROJECT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/news.css">
-	<link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/media.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <script defer src="assets/js/news.js"></script>
+    <script defer src="assets/js/media.js"></script>
     <script defer src="assets/js/ui.js"></script>
 </head>
 <body>
@@ -27,28 +26,63 @@
                 <a href="index.html">🏠 Главная</a>
                 <a href="status.html">📡 Статус</a>
 				<a href="map.html">🗺️ Карта</a>
-                <a href="news.html" class="active">📰 Новости</a>
-				<a href="media.html">📸 Медиа</a>
-				<a href="faq.html">❓ FAQ</a>
-                <a href="staff.html">👥 Команда</a> 
-				<a href="rules.html">📜 Правила</a>
+                <a href="news.html">📰 Новости</a>
+                <a href="media.html" class="active">📸 Медиа</a> <a href="faq.html">❓ FAQ</a>
+				<a href="staff.html">👥 Команда</a> 
+                <a href="rules.html">📜 Правила</a>
                 <a href="donate.html" class="donate">💰 Донат</a>
-				<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
             </nav>
         </div>
-    
+        
         <div class="wargm-buttons">
             <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
             <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
         </div>
     </header>
 
-    <main class="container news-page">
-        <h1 class="page-title">📰 Новости проекта</h1>
-        <p class="page-subtitle">Последние события, обновления и вайпы</p>
+    <main class="container media-page">
+        <h1 class="page-title">📸 Жизнь Сервера</h1>
+        <p class="page-subtitle">Скриншоты с ивентов, рейдов и красивые пейзажи</p>
 
-        <div class="news-grid" id="newsGrid"></div>
+        <div class="gallery-grid">
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800" alt="Скриншот 1" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=800" alt="Скриншот 2" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800" alt="Скриншот 3" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800" alt="Скриншот 4" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800" alt="Скриншот 5" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1616423640778-28d1b53229bd?q=80&w=800" alt="Скриншот 6" class="gallery-img">
+                <div class="overlay"><span>🔍 Открыть</span></div>
+            </div>
+
+        </div>
     </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <footer class="site-footer">
     <div class="footer-content">

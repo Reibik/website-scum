@@ -1,0 +1,131 @@
+/* assets/css/media.css */
+
+.media-page {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+/* Сетка галереи */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Автоматические колонки */
+    gap: 20px;
+}
+
+/* Карточка фото */
+.gallery-item {
+    position: relative;
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+/* Само изображение */
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы картинка заполняла блок и не растягивалась */
+    transition: transform 0.5s;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.1); /* Легкий зум внутри рамки */
+}
+
+/* Затемнение с лупой при наведении */
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Скрыто по умолчанию */
+    transition: opacity 0.3s;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* Показываем при наведении */
+}
+
+.overlay span {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* --- Лайтбокс (Просмотр на весь экран) --- */
+.lightbox {
+    display: none; /* Скрыто */
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 50px rgba(255, 102, 0, 0.5);
+    border-radius: 5px;
+    animation: zoomIn 0.3s;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-lightbox:hover {
+    color: var(--primary);
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}

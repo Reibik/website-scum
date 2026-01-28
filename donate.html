@@ -2,78 +2,140 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Донат | ELON SCUM PROJECT</title>
+    <title>Магазин | ELON SCUM PROJECT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/png" href="favicon.png">
+	<link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/donate.css">
+    <link rel="stylesheet" href="assets/css/donate.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
     <script defer src="assets/js/donate.js"></script>
     <script defer src="assets/js/ui.js"></script>
 </head>
 <body>
 
-<header>
-    <div class="container header-inner">
-        <div class="logo">ELON <span>PROJECT</span></div>
-        <nav class="nav">
-            <a href="index.html">🏠 Главная</a>
-            <a href="status.html">📡 Статус</a>
-            <a href="news.html">📰 Новости</a>
-            <a href="rules.html">📜 Правила</a>
-            <a href="donate.html" class="active donate">💰 Донат</a>
-            <a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
-        </nav>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
+    
+            <nav class="nav">
+                <a href="index.html">🏠 Главная</a>
+                <a href="status.html">📡 Статус</a>
+				<a href="map.html">🗺️ Карта</a>
+                <a href="news.html">📰 Новости</a>
+				<a href="media.html">📸 Медиа</a>
+				<a href="faq.html">❓ FAQ</a>
+                <a href="staff.html">👥 Команда</a> 
+				<a href="rules.html">📜 Правила</a>
+                <a href="donate.html" class="donate active">💰 Донат</a>
+				<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
+            </nav>
+        </div>
+    
+        <div class="wargm-buttons">
+            <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
+            <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
+        </div>
+    </header>
+
+    <main class="container donate-page">
+        <h1 class="page-title">💰 Поддержка сервера</h1>
+        <p class="page-subtitle">
+            Средства идут на оплату хостинга и рекламу. <br>Это <b>не pay-to-win</b>, а способ выразить респект проекту.
+        </p>
+
+        <div class="donate-grid">
+
+            <div class="donate-card">
+                <div class="card-top">
+                    <h3>🔰 STARTER</h3>
+                    <div class="price">199 ₽</div>
+                </div>
+                <ul class="features-list">
+                    <li>💼 Стартовый набор выживания</li>
+                    <li>🚗 Внедорожник (24 часа)</li>
+                    <li>🎒 +5 слотов в банке</li>
+                    <li class="disabled">❌ Доступ к VIP чату</li>
+                </ul>
+                <button class="btn-buy" onclick="buyPack('Starter', 199)">Купить</button>
+            </div>
+
+            <div class="donate-card popular">
+                <div class="ribbon">ХИТ</div>
+                <div class="card-top">
+                    <h3>🔥 PREMIUM</h3>
+                    <div class="price">499 ₽</div>
+                </div>
+                <ul class="features-list">
+                    <li>🚗 Спорткар (7 дней)</li>
+                    <li>🎒 +15 слотов в банке</li>
+                    <li>⚡ <b>x1.5</b> Множитель Опыта</li>
+                    <li>🎨 Уникальный цветной ник</li>
+                </ul>
+                <button class="btn-buy btn-glow" onclick="buyPack('Premium', 499)">Купить</button>
+            </div>
+
+            <div class="donate-card">
+                <div class="card-top">
+                    <h3>👑 ELITE</h3>
+                    <div class="price">999 ₽</div>
+                </div>
+                <ul class="features-list">
+                    <li>🚁 Личный вертолёт (на ивент)</li>
+                    <li>🎒 +30 слотов в банке</li>
+                    <li>⚡ <b>x2.0</b> Множитель Опыта</li>
+                    <li>💬 Доступ в VIP чат и слот</li>
+                </ul>
+                <button class="btn-buy" onclick="buyPack('Elite', 999)">Купить</button>
+            </div>
+
+        </div>
+
+        <div class="donate-info">
+            <p>* Покупка происходит в автоматическом режиме через магазин. Выдача предметов - в течение 5 минут.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+    <div class="footer-content">
+        
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo">ELON <span>PROJECT</span></a>
+            <p class="footer-desc">
+                Эксклюзивный комплекс серверов SCUM. Сбалансированная экономика, уникальные ивенты и отзывчивая администрация.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Навигация</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="status.html">Мониторинг</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="rules.html">Правила сервера</a></li>
+                <li><a href="donate.html">Магазин</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Сообщество</h3>
+            <ul class="footer-links">
+                <li><a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">Discord Сервер</a></li>
+                <li><a href="https://wargm.ru/project/3696" target="_blank">Голосовать на WARGM</a></li>
+                <li><a href="#" target="_blank">Группа VK (Скоро)</a></li> 
+            </ul>
+        </div>
+
     </div>
-</header>
 
-<main class="container donate-page">
-    <h1 class="page-title">💰 Поддержка проекта</h1>
-    <p class="donate-sub">
-        Донат — <b>не pay-to-win</b>. Все средства идут на развитие серверов и ивенты.
-    </p>
-
-    <div class="donate-grid">
-
-        <div class="donate-card">
-            <h3>🔰 STARTER</h3>
-            <div class="price">199 ₽</div>
-            <ul>
-                <li>💼 Стартовый кит</li>
-                <li>🚗 Машина (1 день)</li>
-                <li>🎒 +5 слотов</li>
-            </ul>
-            <button data-pack="starter">Купить</button>
-        </div>
-
-        <div class="donate-card popular">
-            <div class="badge">POPULAR</div>
-            <h3>🔥 PREMIUM</h3>
-            <div class="price">499 ₽</div>
-            <ul>
-                <li>🚗 Машина (7 дней)</li>
-                <li>🎒 +15 слотов</li>
-                <li>⚡ x1.5 EXP</li>
-                <li>🎨 Цветной ник</li>
-            </ul>
-            <button data-pack="premium">Купить</button>
-        </div>
-
-        <div class="donate-card">
-            <h3>👑 ELITE</h3>
-            <div class="price">999 ₽</div>
-            <ul>
-                <li>🚁 Вертолёт (ивенты)</li>
-                <li>🎒 +30 слотов</li>
-                <li>⚡ x2 EXP</li>
-                <li>💬 VIP чат</li>
-            </ul>
-            <button data-pack="elite">Купить</button>
-        </div>
-
+    <div class="footer-bottom">
+        <p>&copy; 2025 ELON SCUM PROJECT. Все права защищены.</p>
+        <p style="margin-top: 5px; opacity: 0.5;">Design by Elon Team</p>
     </div>
-</main>
+</footer>
 
 </body>
 </html>

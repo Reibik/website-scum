@@ -1,82 +1,178 @@
+/* assets/css/donate.css */
+
 .donate-page {
-    padding: 60px 0;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
     text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); /* Золотое свечение */
 }
 
-.donate-sub {
-    color: var(--text-muted);
-    margin-bottom: 40px;
+.page-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 60px;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
+/* Сетка карточек */
 .donate-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центрирование по вертикали для эффекта масштаба */
     gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
 }
 
+/* Карточка товара */
 .donate-card {
-    background: var(--bg-card);
+    background: rgba(20, 20, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
     padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    width: 320px;
+    text-align: center;
     position: relative;
-    transition: 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Эффекты при наведении */
 .donate-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.3);
 }
 
-.donate-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 15px;
-}
-
-.price {
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-.donate-card ul {
-    list-style: none;
-    margin-bottom: 25px;
-}
-
-.donate-card li {
-    margin: 8px 0;
-    color: #ccc;
-}
-
-.donate-card button {
-    padding: 14px;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(90deg, var(--primary), #ffaa00);
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.donate-card button:hover {
-    box-shadow: 0 0 20px rgba(255,102,0,0.6);
-}
-
+/* Стили для ПОПУЛЯРНОЙ карточки */
 .donate-card.popular {
-    border: 2px solid var(--primary);
-    transform: scale(1.05);
+    transform: scale(1.05); /* Чуть больше остальных */
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.15);
+    background: linear-gradient(to bottom, rgba(30,30,35,0.95), rgba(20,20,25,0.95));
+    z-index: 2;
 }
 
-.badge {
+.donate-card.popular:hover {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+}
+
+/* Ленточка "ХИТ" */
+.ribbon {
     position: absolute;
     top: -12px;
     right: 20px;
     background: var(--primary);
-    color: black;
-    padding: 5px 10px;
-    font-size: 0.65rem;
+    color: #000;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+}
+
+/* Заголовок и цена */
+.card-top h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+.popular .price {
+    color: var(--primary);
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
+}
+
+/* Список возможностей */
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    flex-grow: 1; /* Чтобы кнопка всегда была внизу */
+    text-align: left;
+}
+
+.features-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.features-list li.disabled {
+    color: #555;
+    text-decoration: line-through;
+}
+
+/* Кнопка */
+.btn-buy {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 15px;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    border-radius: 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-buy:hover {
+    background: #fff;
+    color: #000;
+}
+
+.btn-glow {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #000;
+}
+
+.btn-glow:hover {
+    background: #ff8533;
+    border-color: #ff8533;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
+}
+
+/* Инфо внизу */
+.donate-info {
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .donate-grid { flex-direction: column; }
+    .donate-card { width: 100%; max-width: 350px; }
+    .donate-card.popular { transform: none; }
+    .donate-card.popular:hover { transform: translateY(-10px); }
 }

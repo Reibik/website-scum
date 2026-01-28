@@ -1,0 +1,136 @@
+/* assets/css/rules.css */
+
+.rules-page {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 60px;
+    font-size: 1.2rem;
+}
+
+/* Сетка правил */
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Две колонки на ПК */
+    gap: 30px;
+}
+
+/* Карточка правил */
+.rule-card {
+    background: rgba(20, 20, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--primary); /* Оранжевая полоска сверху */
+    border-radius: 10px;
+    padding: 30px;
+    transition: transform 0.3s;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rule-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.rule-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* Список правил */
+.rule-list {
+    list-style: none;
+    padding: 0;
+}
+
+.rule-list li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+    padding-left: 10px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.rule-list li b {
+    color: #fff;
+    margin-right: 5px;
+}
+
+/* Выделение наказания */
+.punishment {
+    color: #ff3333;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+/* Футер страницы правил */
+.rules-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.rules-footer p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-discord-small {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #5865F2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    transition: 0.3s;
+}
+
+.btn-discord-small:hover {
+    background-color: #4752c4;
+    transform: scale(1.05);
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .rules-grid {
+        grid-template-columns: 1fr; /* Одна колонка на телефоне */
+    }
+    .page-title {
+        font-size: 2.2rem;
+    }
+}

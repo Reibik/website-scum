@@ -4,54 +4,60 @@
     <meta charset="UTF-8">
     <title>Статус серверов | ELON SCUM PROJECT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/status.css">
-
+    
     <script defer src="assets/js/servers.js"></script>
     <script defer src="assets/js/ui.js"></script>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
-    <div class="container header-inner">
-        <div class="logo">ELON <span>PROJECT</span></div>
+    <div class="header-left">
+        <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
         <nav class="nav">
             <a href="index.html">🏠 Главная</a>
             <a href="status.html" class="active">📡 Статус</a>
+            <a href="map.html">🗺️ Карта</a>
             <a href="news.html">📰 Новости</a>
+            <a href="media.html">📸 Медиа</a>
+            <a href="faq.html">❓ FAQ</a>
+            <a href="staff.html">👥 Команда</a> 
             <a href="rules.html">📜 Правила</a>
             <a href="donate.html" class="donate">💰 Донат</a>
             <a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
         </nav>
     </div>
+    <div class="wargm-buttons">
+        <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
+        <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
+    </div>
 </header>
 
-<!-- CONTENT -->
 <main class="container status-page">
     <h1 class="page-title">📡 Статус серверов</h1>
-
     <div class="servers-grid">
-
         <div class="server-card" data-id="37330681">
             <div class="server-header">
                 <span class="status-dot loading"></span>
                 <h3>ELON #1 [PvE]</h3>
             </div>
-
             <div class="server-info">
                 <div>Режим: <b>PVE</b></div>
                 <div>Лут: <b>x5</b></div>
                 <div>Регион: <b>RU</b></div>
+                <div class="ip-row" style="grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="navigator.clipboard.writeText('192.168.1.1:7000'); alert('IP Скопирован!')">192.168.1.1:7000 📋</b>
+                </div>
             </div>
-
             <div class="server-online">
                 <span class="players">— / —</span>
                 <span class="label">Игроков онлайн</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar"></div>
             </div>
@@ -62,25 +68,54 @@
                 <span class="status-dot loading"></span>
                 <h3>ELON #2 [PvP]</h3>
             </div>
-
             <div class="server-info">
                 <div>Режим: <b>PVP</b></div>
                 <div>Лут: <b>x5</b></div>
                 <div>Регион: <b>RU</b></div>
+                <div class="ip-row" style="grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="navigator.clipboard.writeText('192.168.1.2:7002'); alert('IP Скопирован!')">192.168.1.2:7002 📋</b>
+                </div>
             </div>
-
             <div class="server-online">
                 <span class="players">— / —</span>
                 <span class="label">Игроков онлайн</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar"></div>
             </div>
         </div>
-
     </div>
 </main>
 
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo">ELON <span>PROJECT</span></a>
+            <p class="footer-desc">Эксклюзивный комплекс серверов SCUM.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Навигация</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="status.html">Мониторинг</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="rules.html">Правила сервера</a></li>
+                <li><a href="donate.html">Магазин</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Сообщество</h3>
+            <ul class="footer-links">
+                <li><a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">Discord Сервер</a></li>
+                <li><a href="https://wargm.ru/project/3696" target="_blank">Голосовать на WARGM</a></li>
+                <li><a href="#" target="_blank">Группа VK (Скоро)</a></li> 
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025-2026 ELON SCUM PROJECT. Все права защищены.</p>
+        <p style="margin-top: 5px; opacity: 0.5;">Design by Elon Team</p>
+    </div>
+</footer>
 </body>
 </html>

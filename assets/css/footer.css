@@ -1,0 +1,118 @@
+/* assets/css/footer.css */
+
+.site-footer {
+    background-color: #050507; /* Очень темный фон */
+    border-top: 2px solid var(--primary, #ff6600); /* Оранжевая линия сверху */
+    padding: 60px 0 20px;
+    margin-top: 80px;
+    font-family: 'Rajdhani', sans-serif;
+    color: #a0a0a0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+/* Колонка с логотипом */
+.footer-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-logo span { color: var(--primary, #ff6600); }
+
+.footer-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Заголовки колонок */
+.footer-col h3 {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Ссылки */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--primary, #ff6600);
+    transform: translateX(5px); /* Сдвиг вправо при наведении */
+}
+
+/* Соцсети (иконки или кнопки) */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.social-btn:hover {
+    background: var(--primary, #ff6600);
+    color: #000;
+    border-color: var(--primary, #ff6600);
+}
+
+/* Нижняя полоска */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.footer-bottom a {
+    color: #666;
+    text-decoration: none;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .site-footer { text-align: center; }
+    .footer-links a:hover { transform: none; }
+    .social-links { justify-content: center; }
+}

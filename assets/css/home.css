@@ -1,0 +1,106 @@
+/* Hero Section */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+}
+.hero p {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+.btn-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btn {
+    padding: 15px 40px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    cursor: pointer;
+    color: #fff;
+}
+.btn-discord { background-color: #5865F2; }
+.btn-vote { background-color: transparent; border-color: var(--primary); color: var(--primary); }
+.btn:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+.btn-vote:hover { background-color: var(--primary); color: black; }
+
+/* Server Cards on Home */
+.servers-wrapper {
+    max-width: 900px;
+    margin: -50px auto 50px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 10;
+}
+.server-status {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+.server-status:hover { transform: scale(1.02); border-color: var(--primary); }
+.status-info h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 8px; font-size: 1.4rem; }
+.status-indicator { display: inline-block; width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; margin-right: 12px; box-shadow: 0 0 10px #00ff41; }
+.server-meta { color: #aaa; font-size: 0.9rem; }
+.online-stats { text-align: right; min-width: 100px; }
+.player-count { font-size: 2rem; font-weight: 700; color: var(--primary); display: block; }
+
+/* Discord Widget */
+.discord-widget-container { margin: 50px auto; text-align: center; padding: 0 20px; }
+iframe { max-width: 100%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+
+/* Features */
+.features {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.feature-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-top: 3px solid var(--primary);
+    transition: transform 0.3s;
+}
+.feature-card:hover { transform: translateY(-10px); background: linear-gradient(to bottom, rgba(40,40,45,0.9), rgba(20,20,25,0.9)); }
+.feature-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; color: var(--primary); font-size: 1.5rem; }
+.feature-card p { line-height: 1.6; color: #ccc; }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .hero h1 { font-size: 2.5rem; }
+    .server-status { flex-direction: column; text-align: center; gap: 15px; }
+    .online-stats { text-align: center; }
+}
