@@ -1,0 +1,89 @@
+/* assets/css/seasons.css */
+
+/* --- ОБЩИЕ НАСТРОЙКИ --- */
+.season-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* Чтобы можно было кликать сквозь эффекты */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* =========================================
+   1. НОВЫЙ ГОД (Снег)
+   ========================================= */
+.snowflake {
+    position: absolute;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(105vh); }
+}
+
+/* =========================================
+   2. ХЭЛЛОУИН (Летучие мыши + Оранжевая атмосфера)
+   ========================================= */
+body.season-halloween {
+    /* Добавляем легкий оранжевый оттенок сайту */
+}
+
+body.season-halloween header {
+    border-bottom: 1px solid #ff6600 !important;
+    box-shadow: 0 5px 20px rgba(255, 102, 0, 0.2);
+}
+
+.bat {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    background: url('https://img.icons8.com/ios-filled/50/ff6600/bat.png') no-repeat center/contain;
+    opacity: 0.6;
+    animation: fly linear infinite;
+}
+
+@keyframes fly {
+    0% { transform: translateX(-100px) translateY(0) rotate(10deg); }
+    25% { transform: translateX(25vw) translateY(50px) rotate(-10deg); }
+    50% { transform: translateX(50vw) translateY(0) rotate(10deg); }
+    75% { transform: translateX(75vw) translateY(-50px) rotate(-10deg); }
+    100% { transform: translateX(100vw) translateY(0) rotate(10deg); }
+}
+
+/* =========================================
+   3. 9 МАЯ (Салют)
+   ========================================= */
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0px orange; }
+    100% { transform: scale(0); opacity: 0; box-shadow: 0 0 0 100px transparent; }
+}
+
+/* =========================================
+   4. 14 ФЕВРАЛЯ (Сердечки)
+   ========================================= */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    color: #ff3366;
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+}
