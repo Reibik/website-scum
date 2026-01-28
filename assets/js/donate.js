@@ -5,23 +5,21 @@ function buyPack(packName, price) {
     const nickname = prompt(`Вы выбрали набор "${packName}" за ${price}₽.\nВведите ваш никнейм в SCUM для выдачи:`);
 
     if (nickname && nickname.trim() !== "") {
-        // 2. Если ник введен, подтверждаем
+        // Подтверждение
         const confirmBuy = confirm(`Никнейм: ${nickname}\nНабор: ${packName}\nК оплате: ${price}₽\n\nПерейти к оплате?`);
         
         if (confirmBuy) {
-            // ЗДЕСЬ БУДЕТ ССЫЛКА НА ОПЛАТУ
-            // Если у тебя есть DonationAlerts или Tebex, вставь ссылку ниже:
-            // window.location.href = "https://www.donationalerts.com/r/твой_ник";
-            
-            alert("Сейчас вы будете перенаправлены на страницу оплаты (или в Discord для создания тикета).");
-            
-            // Пока перекидываем в Discord
-            window.open("https://discord.com/invite/tkCmnaQRdX", "_blank");
+            // Уведомление об успехе перед переходом
+            showToast('Переход к оплате...', 'success');
+            window.location.href = "https://www.donationalerts.com/r/jungler";
+            setTimeout(() => {
+                window.open("https://discord.com/invite/tkCmnaQRdX", "_blank");
+            }, 1000);
         }
     } else {
-        // Если нажал отмена или не ввел ник
+        // Если ник не введен
         if (nickname !== null) {
-            alert("Пожалуйста, введите никнейм, чтобы мы знали, кому выдать донат!");
+            showToast('Ошибка: Введите никнейм!', 'error');
         }
     }
 }

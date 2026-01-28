@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="assets/css/status.css">
 	<link rel="stylesheet" href="assets/css/seasons.css">
     <link rel="stylesheet" href="assets/css/loader.css">
+	<link rel="stylesheet" href="assets/css/toast.css">
+	<script defer src="assets/js/toast.js"></script>
 	<script defer src="assets/js/loader.js"></script>
     <script defer src="assets/js/servers.js"></script>
     <script defer src="assets/js/ui.js"></script>
 	<script defer src="assets/js/seasons.js"></script>
+	<script defer src="assets/js/desktop-fx.js"></script>
 </head>
 <body>
 <div id="preloader">
@@ -66,7 +69,7 @@
                 <div>Лут: <b>x5</b></div>
                 <div>Регион: <b>RU</b></div>
                 <div class="ip-row" style="grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="navigator.clipboard.writeText('192.168.1.1:7000'); alert('IP Скопирован!')">192.168.1.1:7000 📋</b>
+                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="copyText('192.168.1.1:7000')" alert('IP Скопирован!')">192.168.1.1:7000 📋</b>
                 </div>
             </div>
             <div class="server-online">
@@ -88,7 +91,7 @@
                 <div>Лут: <b>x5</b></div>
                 <div>Регион: <b>RU</b></div>
                 <div class="ip-row" style="grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="navigator.clipboard.writeText('192.168.1.2:7002'); alert('IP Скопирован!')">192.168.1.2:7002 📋</b>
+                    IP: <b style="cursor: pointer; color: var(--primary);" onclick="copyText('192.168.1.2:7002')" alert('IP Скопирован!')">192.168.1.2:7002 📋</b>
                 </div>
             </div>
             <div class="server-online">
