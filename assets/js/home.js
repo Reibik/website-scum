@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateHomeStats, 60000); // Повтор каждую минуту
 });
 // Установи дату следующего ивента/вайпа
-const targetDate = new Date("March 1, 2026 18:00:00").getTime();
+const targetDate = new Date("December 22, 2026 18:00:00").getTime();
 
 const timerInterval = setInterval(function() {
     const now = new Date().getTime();
@@ -113,7 +113,7 @@ const timerInterval = setInterval(function() {
 
     if (distance < 0) {
         clearInterval(timerInterval);
-        document.querySelector(".countdown-container").innerHTML = "<h3>🚀 Ивент начался!</h3>";
+        document.querySelector(".countdown-container").innerHTML = "<h3>🚀 Вайп начался!</h3>";
         return;
     }
 
@@ -126,4 +126,5 @@ const timerInterval = setInterval(function() {
     document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
     document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
     document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
 }, 1000);
