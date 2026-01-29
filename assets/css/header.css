@@ -1,19 +1,20 @@
 /* assets/css/header.css */
 
+/* --- БАЗА --- */
 header {
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(15px);
-    background: rgba(0,0,0,0.8); /* Чуть темнее фон для читаемости */
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(5, 5, 7, 0.9); /* Темный фон */
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
-/* Логотип */
 .logo {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.8rem;
@@ -21,101 +22,10 @@ header {
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 2px;
-    white-space: nowrap;
     text-decoration: none;
-    z-index: 1001; /* Чтобы был поверх меню */
+    z-index: 1001;
 }
 .logo span { color: #ff6600; }
-
-/* --- СТИЛИ ДЛЯ ПК (Эксклюзивное меню) --- */
-@media (min-width: 901px) {
-    
-    .nav {
-        display: flex;
-        gap: 5px; /* Уменьшили отступ, так как кнопки стали шире */
-        align-items: center;
-    }
-
-    /* Базовый стиль ссылки-кнопки */
-    .nav-item {
-        position: relative;
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.7);
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 0.95rem;
-        padding: 10px 18px;
-        transition: 0.3s;
-        overflow: hidden;
-        /* Создаем форму со срезанными углами */
-        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-        background: rgba(255, 255, 255, 0.02); /* Еле заметный фон */
-        letter-spacing: 1px;
-    }
-
-    /* Линия снизу (по умолчанию невидима) */
-    .nav-item::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: var(--primary); /* Оранжевый */
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-
-    /* Эффект при наведении (HOVER) */
-    .nav-item:hover {
-        color: #fff;
-        background: rgba(255, 102, 0, 0.15); /* Оранжевая подложка */
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    }
-
-    /* Линия выезжает */
-    .nav-item:hover::after {
-        transform: scaleX(1);
-        transform-origin: left;
-    }
-
-    /* Активная ссылка (текущая страница) */
-    .nav-item.active {
-        color: #fff;
-        background: rgba(255, 102, 0, 0.1);
-        border-bottom: 2px solid var(--primary); /* Фиксированная линия */
-    }
-
-    .nav-item.active::after {
-        display: none; /* Убираем анимацию, оставляем бордер */
-    }
-
-    /* --- ОСОБЫЕ КНОПКИ --- */
-
-    /* Кнопка Доната (Золотая) */
-    .nav-item.donate-btn {
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        color: #ffd700;
-    }
-    .nav-item.donate-btn:hover {
-        background: rgba(255, 215, 0, 0.2);
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    }
-
-    /* Кнопка Discord (Синеватая) */
-    .nav-item.discord-btn {
-        border: 1px solid rgba(88, 101, 242, 0.3);
-        color: #5865F2;
-    }
-    .nav-item.discord-btn:hover {
-        background: rgba(88, 101, 242, 0.2);
-        box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
-    }
-}
-
-.nav a.donate { color: #ffd700; }
 
 /* Кнопки WARGM */
 .wargm-buttons {
@@ -125,19 +35,18 @@ header {
 .wargm-buttons img {
     height: 35px;
     border-radius: 4px;
-    transition: transform 0.2s;
-    display: block;
+    transition: 0.2s;
 }
 .wargm-buttons img:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 10px #ff6600;
+    box-shadow: 0 0 15px #ff6600;
 }
 
 /* Кнопка Гамбургер (Скрыта на ПК) */
 .mobile-menu-btn {
     display: none;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1002;
 }
 .mobile-menu-btn span {
     display: block;
@@ -146,83 +55,131 @@ header {
     margin: 6px auto;
     background-color: #fff;
     transition: 0.3s;
+    border-radius: 2px;
 }
 
-/* --- МОБИЛЬНАЯ ВЕРСИЯ (Max-Width 900px) --- */
-@media (max-width: 900px) {
-    header {
-        padding: 15px 20px;
+/* =========================================
+   DESKTOP МЕНЮ (ПК > 992px)
+   ========================================= */
+@media (min-width: 992px) {
+    .nav {
+        display: flex;
+        gap: 5px;
+        align-items: center;
     }
 
-    /* Показываем кнопку гамбургер */
-    .mobile-menu-btn {
-        display: block;
-        z-index: 1002; /* Кнопка всегда поверх меню */
+    .nav-item {
+        position: relative;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        transition: 0.3s;
+        /* Форма со срезанными углами */
+        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        background: rgba(255, 255, 255, 0.03);
+        letter-spacing: 0.5px;
     }
 
-    /* Скрываем кнопки WARGM */
-    .wargm-buttons {
-        display: none; 
+    /* Линия-индикатор снизу */
+    .nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; width: 100%; height: 2px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
-    /* Стили выпадающего меню */
+    .nav-item:hover {
+        color: #fff;
+        background: rgba(255, 102, 0, 0.15);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-item:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    /* Активный пункт */
+    .nav-item.active {
+        color: #fff;
+        background: rgba(255, 102, 0, 0.1);
+        border-bottom: 2px solid var(--primary);
+    }
+    .nav-item.active::after { display: none; }
+
+    /* Особые кнопки */
+    .nav-item.donate-btn { color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.2); }
+    .nav-item.donate-btn:hover { background: rgba(255, 215, 0, 0.15); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+    
+    .nav-item.discord-btn { color: #5865F2; border: 1px solid rgba(88, 101, 242, 0.2); }
+    .nav-item.discord-btn:hover { background: rgba(88, 101, 242, 0.15); box-shadow: 0 0 15px rgba(88, 101, 242, 0.3); }
+}
+
+/* =========================================
+   MOBILE МЕНЮ (Телефоны <= 991px)
+   ========================================= */
+@media (max-width: 991px) {
+    header { padding: 15px 20px; }
+    
+    .wargm-buttons { display: none; } /* Скрываем баннеры на телефоне */
+    .mobile-menu-btn { display: block; } /* Показываем гамбургер */
+
     .nav {
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%; /* Сделал чуть шире для удобства */
-        height: 100vh; /* Высота на весь экран */
+        top: 0; right: -100%; /* Спрятано справа */
+        width: 85%;
+        height: 100vh;
         background: #0a0a0c;
-        
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* ВАЖНО: Начинаем сверху, а не от центра */
-        align-items: center;
-        
-        transition: 0.4s ease;
-        border-left: 2px solid #ff6600;
+        padding: 80px 20px 40px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid var(--primary);
         box-shadow: -10px 0 30px rgba(0,0,0,0.8);
-        
-        /* Отступы, чтобы текст не наезжал на кнопку и границы */
-        padding-top: 80px; 
-        padding-bottom: 50px; 
-        
-        /* ВАЖНО: Разрешаем прокрутку, если меню не влезает */
-        overflow-y: auto; 
-        gap: 10px; /* Расстояние между ссылками */
+        overflow-y: auto; /* Прокрутка */
+        gap: 10px;
+        z-index: 1000;
     }
 
-    /* Состояние "Открыто" */
-    .nav.active {
-        right: 0;
+    .nav.active { right: 0; } /* Выезжает */
+
+    .nav-item {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #ccc;
+        text-decoration: none;
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px; /* Скругляем углы на мобиле для удобства */
+        border-left: 3px solid transparent;
+        transition: 0.2s;
     }
 
-    .nav a {
-        font-size: 1.1rem;
-        width: 85%;
-        text-align: center;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-        padding: 15px 10px;
-        display: block; /* Чтобы ссылка занимала всю ширину блока */
-        flex-shrink: 0; /* Чтобы ссылки не сплющивались */
+    .nav-item:hover, .nav-item:active {
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        padding-left: 25px; /* Эффект сдвига */
     }
-    
-    .nav a:hover, .nav a.active {
-        background: var(--primary);
-        color: #000;
-        transform: none; /* Убираем сдвиги на мобильном, они могут глючить */
+
+    .nav-item.active {
+        background: linear-gradient(90deg, rgba(255, 102, 0, 0.2), transparent);
+        border-left-color: var(--primary);
+        color: #fff;
     }
 
     /* Анимация крестика */
-    .mobile-menu-btn.active span:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 6px);
-        background-color: #ff6600;
-    }
-    .mobile-menu-btn.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .mobile-menu-btn.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -5px);
-        background-color: #ff6600;
-    }
+    .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 6px); background: var(--primary); }
+    .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -5px); background: var(--primary); }
 }
