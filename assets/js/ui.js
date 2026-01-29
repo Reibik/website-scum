@@ -70,3 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+// --- ЛОГИКА МОДАЛЬНЫХ ОКОН ---
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Блокируем прокрутку сайта
+    }
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Возвращаем прокрутку
+    }
+}
+
+// Закрытие по нажатию Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = 'auto';
+    }
+});
