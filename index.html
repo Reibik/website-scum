@@ -32,6 +32,7 @@
 	<script defer src="assets/js/home.js"></script>
 	<script defer src="assets/js/ui.js"></script>
 	<script defer src="assets/js/seasons.js"></script>
+	<!script defer src="assets/js/decoder.js"><!/script>
 </head>
 <body>
     <div id="preloader">
@@ -51,30 +52,30 @@
         <span></span>
     </div>
 
-    <nav class="nav" id="mainNav">
-        <a href="index.html">🏠 Главная</a>
-        <a href="status.html">📡 Статус</a>
-        <a href="map.html">🗺️ Карта</a>
-        <a href="news.html">📰 Новости</a>
-        <a href="media.html">📸 Медиа</a>
-        <a href="faq.html">❓ FAQ</a>
-        <a href="staff.html">👥 Команда</a> 
-        <a href="rules.html">📜 Правила</a>
-        <a href="donate.html" class="donate">💰 Донат</a>
-        <a href="https://discord.com/invite/tkCmnaQRdX" target="_blank">💬 Discord</a>
-    </nav>
+		<nav class="nav" id="mainNav">
+		<a href="index.html" class="nav-item hacker-text"><span>Главная</span></a>
+		<a href="status.html" class="nav-item hacker-text"><span>Статус</span></a>
+		<a href="map.html" class="nav-item hacker-text"><span>Карта</span></a>
+		<a href="news.html" class="nav-item hacker-text"><span>Новости</span></a>
+		<a href="media.html" class="nav-item hacker-text"><span>Медиа</span></a>
+		<a href="faq.html" class="nav-item hacker-text"><span>FAQ</span></a>
+		<a href="staff.html" class="nav-item hacker-text"><span>Команда</span></a> 
+		<a href="rules.html" class="nav-item hacker-text"><span>Правила</span></a>
+		<a href="donate.html" class="nav-item donate-btn"><span>💰 Донат</span></a>
+		<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank" class="nav-item discord-btn"><span>💬 Discord</span></a>
+	</nav>
 
     <div class="wargm-buttons">
         <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
         <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
     </div>
 </header>
-
+	
     <section class="hero">
     <video autoplay muted loop playsinline class="hero-video-bg">
         <source src="assets/img/bg.mp4" type="video/mp4">
     </video>
-
+	
     <h1>Выживание<br>Нового Уровня</h1>
     <p>Эксклюзивный сервер SCUM с уникальной экономикой, сбалансированным PVE, PvP и высоким FPS.</p>
     
@@ -155,12 +156,21 @@
                 </button>
             </div>
         </div>
-
     </section>
-
-    <div class="discord-widget-container">
-        <iframe src="https://discord.com/widget?id=949635860456935444&theme=dark" width="800" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-    </div>
+	
+	<div class="countdown-container">
+		<h3>🔥 До Глобального Ивента:</h3>
+		<div id="countdown">
+			<div class="time-box"><span id="days">00</span><small>Дней</small></div>
+			<div class="time-box"><span id="hours">00</span><small>Часов</small></div>
+			<div class="time-box"><span id="minutes">00</span><small>Мин</small></div>
+			<div class="time-box"><span id="seconds">00</span><small>Сек</small></div>
+		</div>
+	</div>
+	
+    <!<div class="discord-widget-container">
+    <!    <iframe src="https://discord.com/widget?id=949635860456935444&theme=dark" width="800" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    <!/div>
 
     <section class="features">
         <div class="feature-card">

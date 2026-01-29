@@ -57,3 +57,16 @@ document.querySelectorAll('.nav a').forEach(link => {
         document.body.style.overflow = 'auto';
     });
 });
+// Автоматическая подсветка активного пункта меню
+document.addEventListener('DOMContentLoaded', () => {
+    const currentLocation = location.href;
+    const menuItems = document.querySelectorAll('.nav-item');
+    const menuLength = menuItems.length;
+
+    for (let i = 0; i < menuLength; i++) {
+        // Если ссылка совпадает с текущим URL
+        if (menuItems[i].href === currentLocation) {
+            menuItems[i].classList.add("active");
+        }
+    }
+});
