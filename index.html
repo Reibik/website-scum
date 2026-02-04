@@ -34,8 +34,17 @@
 	<script defer src="assets/js/seasons.js"></script>
     <link rel="stylesheet" href="assets/css/updater.css">
     <script defer src="assets/js/updater.js"></script>
+    <link rel="stylesheet" href="assets/css/timer.css">
+    <script defer src="assets/js/timer.js"></script>
 	</head>
 <body>
+    <div id="restart-bar" class="restart-bar">
+    <div class="restart-container">
+        <span class="restart-label">⚠ ПЕРЕЗАГРУЗКА СИСТЕМЫ:</span>
+        <span id="restart-timer" class="restart-timer">--:--:--</span>
+        <span class="restart-status">ВСЕ СИСТЕМЫ ПОДКЛЮЧЕНЫ К СЕТИ</span>
+    </div>
+    </div>
     <div id="preloader">
         <div class="loader-content">
             <div class="loader-ring"></div>
@@ -245,8 +254,9 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn-connect full-width" onclick="copyText('192.168.1.1:7000')">Скопировать IP</button>
-            </div>
+    <button class="btn-close-modal" onclick="closeModal('modal-server-1')">Закрыть</button>
+    <button class="btn-connect-modal" onclick="copyText('192.168.1.1:7000')">Скопировать IP</button>
+</div>
         </div>
     </div>
 
@@ -278,8 +288,9 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn-connect full-width" onclick="copyText('192.168.1.2:7002')">Скопировать IP</button>
-            </div>
+    <button class="btn-close-modal" onclick="closeModal('modal-server-2')">Закрыть</button>
+    <button class="btn-connect-modal" onclick="copyText('192.168.1.2:7002')">Скопировать IP</button>
+</div>
         </div>
     </div>
 </body>

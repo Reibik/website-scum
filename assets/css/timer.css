@@ -1,0 +1,94 @@
+/* --- RESTART TIMER HUD --- */
+.restart-bar {
+    width: 100%;
+    height: 30px;
+    background: #050505; /* Почти черный */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rajdhani', monospace; /* Технический шрифт */
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #888;
+    position: relative;
+    z-index: 2000;
+    overflow: hidden;
+}
+
+/* Эффект диагональных полос (Hazard) */
+.restart-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.02) 10px,
+        rgba(255, 255, 255, 0.02) 20px
+    );
+    pointer-events: none;
+}
+
+.restart-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 2;
+}
+
+.restart-label {
+    font-weight: bold;
+    color: var(--primary); /* Оранжевый */
+}
+
+.restart-timer {
+    font-family: 'Orbitron', sans-serif; /* Цифровой шрифт */
+    color: #fff;
+    font-weight: bold;
+    min-width: 80px;
+}
+
+.restart-status {
+    color: #444;
+    font-size: 0.7rem;
+    border: 1px solid #333;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+/* --- СОСТОЯНИЯ ТРЕВОГИ --- */
+
+/* Внимание (меньше 30 мин) */
+.restart-bar.warning .restart-timer {
+    color: #ffcc00; /* Желтый */
+}
+
+/* Опасность (меньше 10 мин) */
+.restart-bar.danger {
+    background: #1a0505; /* Красноватый фон */
+    border-bottom-color: #ff3333;
+}
+
+.restart-bar.danger .restart-label,
+.restart-bar.danger .restart-timer {
+    color: #ff3333; /* Красный текст */
+    text-shadow: 0 0 5px #ff3333;
+}
+
+.restart-bar.danger .restart-status {
+    border-color: #ff3333;
+    color: #ff3333;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Адаптив: на мобильном скрываем статус "ALL SYSTEMS ONLINE", чтобы влезло */
+@media (max-width: 600px) {
+    .restart-status { display: none; }
+    .restart-bar { font-size: 0.75rem; }
+}
