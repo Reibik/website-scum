@@ -1,0 +1,68 @@
+/* Стили для Update Toast */
+.update-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(10, 10, 12, 0.95);
+    border: 1px solid #00d2ff; /* Голубой неон для обновлений */
+    border-left: 4px solid #00d2ff;
+    padding: 15px;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 200000;
+    backdrop-filter: blur(10px);
+    animation: slideInDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+    min-width: 280px;
+}
+
+.update-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.update-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.update-title {
+    font-weight: 800;
+    color: #00d2ff;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.update-desc {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.btn-refresh {
+    background: linear-gradient(90deg, #00d2ff, #0077ff);
+    border: none;
+    color: #fff;
+    padding: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.2s;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-refresh:hover {
+    box-shadow: 0 0 15px #00d2ff;
+    transform: scale(1.02);
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
