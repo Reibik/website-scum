@@ -1,11 +1,43 @@
+/* assets/css/main.css */
+
+/* --- ПЕРЕМЕННЫЕ И ТЕМЫ --- */
 :root {
-    --primary: #ff6600;
-    --accent: #00d2ff;
-    --bg-dark: #0a0a0c;
-    --bg-card: rgba(20,20,25,0.85);
-    --text-main: #ffffff;
-    --text-muted: #a0a0a0;
-    --glass: rgba(255,255,255,0.06);
+    /* ЦВЕТА ПО УМОЛЧАНИЮ (DARK MODE) */
+    --primary: #ff6600;      /* Оранжевый акцент (неизменен) */
+    --accent: #00d2ff;       /* Голубой неон */
+    
+    --bg-body: #050505;      /* Фон страницы */
+    --bg-dark: #0a0a0c;      /* Старый алиас для совместимости */
+    --bg-card: rgba(20, 20, 25, 0.85); /* Фон карточек */
+    --header-bg: rgba(5, 5, 7, 0.9);   /* Фон хедера */
+    --modal-bg: #0f0f12;     /* Фон модальных окон */
+    
+    --text-main: #ffffff;    /* Основной текст */
+    --text-muted: #a0a0a0;   /* Второстепенный текст */
+    
+    --glass: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: rgba(0, 0, 0, 0.5);
+    
+    --overlay-color: rgba(0,0,0,0.75); /* Затемнение фона */
+}
+
+/* СВЕТЛАЯ ТЕМА (LIGHT MODE) */
+[data-theme="light"] {
+    --bg-body: #e6e7ee;      /* Светло-серый бетон */
+    --bg-dark: #e6e7ee;      
+    --bg-card: #ffffff;      /* Белые карточки */
+    --header-bg: rgba(240, 240, 245, 0.95);
+    --modal-bg: #f5f5f5;
+    
+    --text-main: #1a1a1a;    /* Почти черный текст */
+    --text-muted: #555555;   /* Темно-серый */
+    
+    --glass: rgba(0, 0, 0, 0.05);
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.15);
+    
+    --overlay-color: rgba(255,255,255,0.5); /* Светлое наложение */
 }
 
 * {
@@ -16,13 +48,18 @@
 
 body {
     font-family: 'Rajdhani', sans-serif;
-    background: var(--bg-dark);
+    background-color: var(--bg-body);
     color: var(--text-main);
+    
+    /* Фон с картинкой и градиентом */
     background-image:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+        linear-gradient(var(--overlay-color), var(--overlay-color)),
         url('https://i.postimg.cc/L4TtXw7n/Gemini-Generated-Image-vvg9bpvvg9bpvvg9.png');
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
+    
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход темы */
 }
 
 .container {
@@ -30,9 +67,10 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+
 /* Кнопка "Наверх" */
 #scrollTopBtn {
-    display: none; /* Скрыта по умолчанию */
+    display: none;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -53,6 +91,7 @@ body {
 }
 
 #scrollTopBtn:hover {
-    background-color: #fff;
+    background-color: var(--text-main);
+    color: var(--primary);
     transform: translateY(-5px);
 }

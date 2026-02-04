@@ -97,3 +97,28 @@ document.addEventListener('keydown', (e) => {
         document.body.style.overflow = 'auto';
     }
 });
+/* --- ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement; 
+
+    // Проверяем сохраненную тему
+    const savedTheme = localStorage.getItem('site_theme');
+    if (savedTheme === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('site_theme', 'dark');
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('site_theme', 'light');
+            }
+        });
+    }
+});

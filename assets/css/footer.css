@@ -1,12 +1,13 @@
 /* assets/css/footer.css */
 
 .site-footer {
-    background-color: #050507; /* Очень темный фон */
-    border-top: 2px solid var(--primary, #ff6600); /* Оранжевая линия сверху */
+    background-color: var(--bg-card); /* Переменная */
+    border-top: 2px solid var(--primary);
     padding: 60px 0 20px;
     margin-top: 80px;
     font-family: 'Rajdhani', sans-serif;
-    color: #a0a0a0;
+    color: var(--text-muted); /* Переменная */
+    transition: background-color 0.3s;
 }
 
 .footer-content {
@@ -23,14 +24,14 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 1.8rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-main); /* Переменная */
     text-transform: uppercase;
     margin-bottom: 20px;
     display: block;
     text-decoration: none;
 }
 
-.footer-logo span { color: var(--primary, #ff6600); }
+.footer-logo span { color: var(--primary); }
 
 .footer-desc {
     font-size: 0.95rem;
@@ -40,7 +41,7 @@
 
 /* Заголовки колонок */
 .footer-col h3 {
-    color: #fff;
+    color: var(--text-main); /* Переменная */
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     margin-bottom: 20px;
@@ -58,18 +59,18 @@
 }
 
 .footer-links a {
-    color: #a0a0a0;
+    color: var(--text-muted); /* Переменная */
     text-decoration: none;
     transition: 0.3s;
     display: inline-block;
 }
 
 .footer-links a:hover {
-    color: var(--primary, #ff6600);
-    transform: translateX(5px); /* Сдвиг вправо при наведении */
+    color: var(--primary);
+    transform: translateX(5px);
 }
 
-/* Соцсети (иконки или кнопки) */
+/* Соцсети */
 .social-links {
     display: flex;
     gap: 15px;
@@ -81,8 +82,8 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255,255,255,0.05);
-    color: #fff;
+    background: var(--glass); /* Переменная */
+    color: var(--text-main);
     border-radius: 5px;
     text-decoration: none;
     transition: 0.3s;
@@ -90,9 +91,9 @@
 }
 
 .social-btn:hover {
-    background: var(--primary, #ff6600);
+    background: var(--primary);
     color: #000;
-    border-color: var(--primary, #ff6600);
+    border-color: var(--primary);
 }
 
 /* Нижняя полоска */
@@ -100,17 +101,16 @@
     max-width: 1200px;
     margin: 40px auto 0;
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid var(--border); /* Переменная */
     text-align: center;
     font-size: 0.85rem;
 }
 
 .footer-bottom a {
-    color: #666;
+    color: var(--text-muted);
     text-decoration: none;
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
     .site-footer { text-align: center; }
     .footer-links a:hover { transform: none; }

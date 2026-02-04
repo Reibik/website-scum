@@ -4,75 +4,117 @@
     <meta charset="UTF-8">
     <title>Магазин | ELON SCUM PROJECT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-	<link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png"> <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/donate.css">
-	<link rel="stylesheet" href="assets/css/seasons.css">
-	<link rel="stylesheet" href="assets/css/loader.css">
-	<link rel="stylesheet" href="assets/css/toast.css">
-	<script defer src="assets/js/toast.js"></script>
-	<script defer src="assets/js/loader.js"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/seasons.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/toast.css">
+    <link rel="stylesheet" href="assets/css/timer.css"> <link rel="stylesheet" href="assets/css/updater.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
+    <script defer src="assets/js/toast.js"></script>
+    <script defer src="assets/js/loader.js"></script>
     <script defer src="assets/js/donate.js"></script>
     <script defer src="assets/js/ui.js"></script>
-	<script defer src="assets/js/seasons.js"></script>
-	<script defer src="assets/js/desktop-fx.js"></script>
-    <link rel="stylesheet" href="assets/css/updater.css">
-    <script defer src="assets/js/updater.js"></script>
-</head>
+    <script defer src="assets/js/seasons.js"></script>
+    <script defer src="assets/js/desktop-fx.js"></script>
+    <script defer src="assets/js/timer.js"></script> 
+    <script defer src="assets/js/updater.js"></script> </head>
 <body>
+
     <div id="restart-bar" class="restart-bar">
-    <div class="restart-container">
-        <span class="restart-label">⚠ ПЕРЕЗАГРУЗКА СИСТЕМЫ:</span>
-        <span id="restart-timer" class="restart-timer">--:--:--</span>
-        <span class="restart-status">ВСЕ СИСТЕМЫ ПОДКЛЮЧЕНЫ К СЕТИ</span>
+        <div class="restart-container">
+            <span class="restart-label">⚠ ПЕРЕЗАГРУЗКА СИСТЕМЫ:</span>
+            <span id="restart-timer" class="restart-timer">--:--:--</span>
+            <span class="restart-status">ВСЕ СИСТЕМЫ ПОДКЛЮЧЕНЫ К СЕТИ</span>
+        </div>
     </div>
-    </div>
-<div id="preloader">
+
+    <div id="preloader">
         <div class="loader-content">
             <div class="loader-ring"></div>
             <div class="loader-core"></div>
         </div>
         <div class="loader-text">ПОДКЛЮЧЕНИЕ К BCU...</div>
     </div>
+
     <header>
-    <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
+        <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
 
-    <div class="mobile-menu-btn" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-    <nav class="nav" id="mainNav">
-		<a href="index.html" class="nav-item"><span>🏠 Главная</span></a>
-		<a href="status.html" class="nav-item"><span>📡 Статус</span></a>
-		<a href="map.html" class="nav-item"><span>🗺️ Карта</span></a>
-		<a href="news.html" class="nav-item"><span>📰 Новости</span></a>
-		<a href="media.html" class="nav-item"><span>📸 Медиа</span></a>
-		<a href="faq.html" class="nav-item"><span>❓ FAQ</span></a>
-		<a href="staff.html" class="nav-item"><span>👥 Команда</span></a> 
-		<a href="rules.html" class="nav-item"><span>📜 Правила</span></a>
-		<a href="donate.html" class="nav-item donate-btn"><span>💰 Донат</span></a>
-		<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank" class="nav-item discord-btn"><span>💬 Discord</span></a>
-	</nav>
+        <nav class="nav" id="mainNav">
+            <a href="index.html" class="nav-item"><span>🏠 Главная</span></a>
+            <a href="status.html" class="nav-item"><span>📡 Статус</span></a>
+            <a href="map.html" class="nav-item"><span>🗺️ Карта</span></a>
+            <a href="news.html" class="nav-item"><span>📰 Новости</span></a>
+            <a href="media.html" class="nav-item"><span>📸 Медиа</span></a>
+            <a href="faq.html" class="nav-item"><span>❓ FAQ</span></a>
+            <a href="staff.html" class="nav-item"><span>👥 Команда</span></a> 
+            <a href="rules.html" class="nav-item"><span>📜 Правила</span></a>
+            <a href="donate.html" class="nav-item donate-btn active"><span>💰 Донат</span></a>
+            <a href="https://discord.com/invite/tkCmnaQRdX" target="_blank" class="nav-item discord-btn"><span>💬 Discord</span></a>
+        </nav>
 
-    <div class="wargm-buttons">
-        <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
-        <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
-    </div>
-</header>
+        <div class="header-right" style="display: flex; align-items: center;">
+            <div class="wargm-buttons">
+                <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
+                <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
+            </div>
+        </div>
+    </header>
 
     <main class="container donate-page">
         <h1 class="page-title">💰 Поддержка сервера</h1>
         <p class="page-subtitle">
             Средства идут на оплату хостинга и рекламу. <br>Это <b>не pay-to-win</b>, а способ выразить респект проекту.
         </p>
+
+        <div class="dev-support-wrapper">
+            <div class="dev-card">
+                <div class="dev-content">
+                    <div class="dev-header">
+                        <h2>🏗️ Фонд Развития</h2>
+                        <span class="badge-dev">ДОБРОВОЛЬНОЕ ПОЖЕРТВОВАНИЕ</span>
+                    </div>
+                    <p class="dev-desc">
+                        Прямая поддержка жизни сервера. Средства идут на оплату мощного железа, 
+                        заказ кастомных скриптов и рекламу. <br>
+                        <span style="color: #aaa; font-size: 0.9rem;">(Без выдачи игровых предметов, только респект и роль в Discord)</span>
+                    </p>
+
+                    <div class="goal-container">
+                        <div class="goal-labels">
+                            <span>🎯 Цель: Оплата хостинга (Март)</span>
+                            <span class="goal-numbers"><span class="current">1 675</span> / 10 000 ₽</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 17%;">
+                                <div class="progress-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dev-action">
+                        <input type="number" id="devAmount" class="dev-input" placeholder="Сумма (₽)..." min="10">
+                        <button class="btn-dev" onclick="donateDev()">Поддержать Проект</button>
+                    </div>
+                </div>
+
+                <div class="visual-core">
+                    <div class="core-ring"></div>
+                    <div class="core-inner"></div>
+                    <div class="core-particles"></div>
+                </div>
+            </div>
+        </div>
 
         <div class="donate-grid">
 
@@ -120,44 +162,7 @@
             </div>
 
         </div>
-		<div class="dev-support-wrapper">
-            <div class="dev-card">
-                <div class="dev-content">
-                    <div class="dev-header">
-                        <h2>🏗️ Фонд Развития</h2>
-                        <span class="badge-dev">ДОБРОВОЛЬНОЕ ПОЖЕРТВОВАНИЕ</span>
-                    </div>
-                    <p class="dev-desc">
-                        Прямая поддержка жизни сервера. Средства идут на оплату мощного железа, 
-                        заказ кастомных скриптов и рекламу. <br>
-                        <span style="color: #aaa; font-size: 0.9rem;">(Без выдачи игровых предметов, только респект и роль в Discord)</span>
-                    </p>
 
-                    <div class="goal-container">
-                        <div class="goal-labels">
-                            <span>🎯 Цель: Оплата хостинга (Январь)</span>
-                            <span class="goal-numbers"><span class="current">1 500</span> / 10 000 ₽</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: 15%;">
-                                <div class="progress-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dev-action">
-                        <input type="number" id="devAmount" class="dev-input" placeholder="Сумма (₽)..." min="10">
-                        <button class="btn-dev" onclick="donateDev()">Поддержать Проект</button>
-                    </div>
-                </div>
-
-                <div class="visual-core">
-                    <div class="core-ring"></div>
-                    <div class="core-inner"></div>
-                    <div class="core-particles"></div>
-                </div>
-            </div>
-        </div>
         <div class="donate-info">
             <p>* Покупка происходит в автоматическом режиме через магазин. Выдача предметов - в течение 5 минут.</p>
         </div>
