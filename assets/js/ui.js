@@ -38,33 +38,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- FIREBASE SYNC (ГЛАВНАЯ МАГИЯ) ---
+// --- SOCKET.IO SYNC (REAL-TIME) ---
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof firebase === 'undefined') return;
-    const db = firebase.database();
+    // Проверяем, подключена ли библиотека
+    if (typeof io === 'undefined') return;
 
-    // БЕГУЩАЯ СТРОКА
-    const t = document.querySelector('.ticker-content');
-    if (t) db.ref('settings/ticker').on('value', (s) => { const txt = s.val(); if(txt) t.innerHTML = Array(4).fill(`<span class="ticker-item">⚡ <b>SYSTEM MESSAGE:</b> ${txt}</span>`).join(''); });
+    const socket = io(); // Соединяемся с сервером
 
-    // ТЕХРАБОТЫ (Кроме админки)
-    if (!window.location.pathname.includes('admin.html')) {
-        db.ref('settings/maintenance').on('value', (s) => { if(s.val()) showMaintenanceScreen(); else removeMaintenanceScreen(); });
-    }
-
-    // АЛЕРТЫ
-    db.ref('settings/alert').on('value', (s) => {
-        const d = s.val();
-        if (d && localStorage.getItem('last_alert_time') != d.timestamp) {
-            showGlobalAlert(d.message); localStorage.setItem('last_alert_time', d.timestamp);
-        }
+    // 1. Инициализация (получаем текущее состояние при входе)
+    socket.on('init_state', (state) => {
+        updateTickerUI(state.ticker);
+        applyAtmosphere(state.atmosphere);
+        if (state.maintenance) showMaintenanceScreen();
     });
 
-    // ВИЗУАЛЬНАЯ АТМОСФЕРА (НОВОЕ)
-    db.ref('settings/atmosphere').on('value', (s) => {
-        applyAtmosphere(s.val() || 'default');
+    // 2. Слушаем обновления
+    socket.on('ticker_update', (text) => updateTickerUI(text));
+    socket.on('atmosphere_update', (mode) => applyAtmosphere(mode));
+    
+    socket.on('maintenance_update', (isActive) => {
+        if (isActive) showMaintenanceScreen();
+        else removeMaintenanceScreen();
     });
+
+    socket.on('global_alert', (text) => showGlobalAlert(text));
 });
+
+// Вспомогательная функция для тикера
+function updateTickerUI(text) {
+    const t = document.querySelector('.ticker-content');
+    if (t && text) {
+        t.innerHTML = Array(4).fill(`<span class="ticker-item">⚡ <b>SYSTEM MESSAGE:</b> ${text}</span>`).join('');
+    }
+}
+
+// (Функции showMaintenanceScreen, showGlobalAlert и applyAtmosphere оставляем как были)
 
 // ФУНКЦИИ UI
 function showMaintenanceScreen() {
@@ -88,4 +96,30 @@ function applyAtmosphere(mode) {
     const b = document.body;
     b.classList.remove('mode-red-alert', 'mode-toxic', 'mode-glitch');
     if (mode !== 'default') b.classList.add(`mode-${mode}`);
+}
+// --- USER AUTH SYSTEM ---
+document.addEventListener('DOMContentLoaded', () => {
+    checkUserLogin();
+});
+
+async function checkUserLogin() {
+    try {
+        const res = await fetch('/api/user');
+        const data = await res.json();
+        const container = document.getElementById('user-profile');
+
+        if (data.loggedIn && container) {
+            const u = data.user;
+            // Рисуем мини-профиль
+            container.innerHTML = `
+                <div class="user-mini-card" onclick="location.href='/profile.html'"> <img src="${u.avatar}" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">${u.displayName}</span>
+                        <span class="user-balance">${u.balance} COINS</span>
+                    </div>
+                </div>
+                <a href="/logout" style="margin-left:5px; color:#666; font-size:0.8rem; text-decoration:none;">✖</a>
+            `;
+        }
+    } catch (e) { console.error("Auth check failed", e); }
 }

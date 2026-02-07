@@ -36,6 +36,7 @@
     <script defer src="assets/js/updater.js"></script>
     <link rel="stylesheet" href="assets/css/timer.css">
     <script defer src="assets/js/timer.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
     <!-- <link rel="stylesheet" href="assets/css/player.css"> --> <!-- Временно отключаем стили плеера, так как он не используется на главной странице -->
     <!-- <script defer src="assets/js/player.js"></script> --> <!-- Скрипт плеера все еще подключен, чтобы не нарушать функциональность, если плеер будет добавлен в будущем -->
 	</head>
@@ -56,6 +57,12 @@
     </div>
 
     <header>
+		<div id="user-profile" class="user-profile">
+    <a href="/auth/steam" class="steam-login-btn">
+        <img src="assets/img/steam-icon.png" alt="Steam" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg'">
+        <span>ВОЙТИ</span>
+    </a>
+	</div>
         <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
         <div class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -68,7 +75,7 @@
             <a href="status.html" class="nav-item"><span>📡 Статус</span></a>
             <a href="map.html" class="nav-item"><span>🗺️ Карта</span></a>
             <a href="news.html" class="nav-item"><span>📰 Новости</span></a>
-            <a href="media.html" class="nav-item"><span>📸 Медиа</span></a>
+            <!-- <a href="media.html" class="nav-item"><span>📸 Медиа</span></a> -->
             <a href="faq.html" class="nav-item"><span>❓ FAQ</span></a>
             <a href="staff.html" class="nav-item"><span>👥 Команда</span></a> 
             <a href="rules.html" class="nav-item"><span>📜 Правила</span></a>

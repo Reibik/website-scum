@@ -215,3 +215,43 @@ header {
     .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
     .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -5px); background: var(--primary); }
 }
+/* --- ПРОФИЛЬ ИГРОКА --- */
+.user-profile {
+    margin-right: 15px;
+}
+
+/* Кнопка входа */
+.steam-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #171a21; /* Steam Dark */
+    color: #fff;
+    padding: 6px 15px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    border: 1px solid #333;
+    transition: 0.3s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.steam-login-btn img { width: 20px; height: 20px; }
+.steam-login-btn:hover { background: #2a475e; border-color: #66c0f4; box-shadow: 0 0 15px rgba(102, 192, 244, 0.3); }
+
+/* Когда игрок вошел (Мини-профиль) */
+.user-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid var(--primary);
+    padding: 5px 15px 5px 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.user-mini-card:hover { background: rgba(255, 102, 0, 0.2); }
+
+.user-avatar { width: 32px; height: 32px; border-radius: 4px; border: 1px solid #fff; }
+.user-info { display: flex; flex-direction: column; line-height: 1; }
+.user-name { font-size: 0.85rem; font-weight: bold; color: #fff; }
+.user-balance { font-size: 0.75rem; color: var(--primary); }

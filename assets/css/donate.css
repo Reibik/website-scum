@@ -1,395 +1,84 @@
 /* assets/css/donate.css */
 
-.donate-page {
-    padding: 50px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 80vh;
+.shop-page { padding-top: 100px; padding-bottom: 50px; }
+
+/* Фильтры */
+.shop-filters {
+    display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;
+}
+.filter-btn {
+    background: transparent; border: 1px solid #444; color: #888;
+    padding: 10px 20px; font-family: 'Orbitron'; cursor: pointer;
+    transition: 0.3s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary); color: #000; border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
 }
 
-.page-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); /* Золотое свечение */
-}
-
-.page-subtitle {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 60px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
-
-/* Сетка карточек */
-.donate-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Центрирование по вертикали для эффекта масштаба */
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
+/* Сетка */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 /* Карточка товара */
-.donate-card {
-    background: rgba(20, 20, 25, 0.85);
+.product-card {
+    background: rgba(20, 20, 25, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 30px;
-    width: 320px;
-    text-align: center;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
+    border-radius: 6px; overflow: hidden;
+    transition: 0.3s; position: relative;
+    display: flex; flex-direction: column;
+}
+.product-card:hover {
+    transform: translateY(-5px); border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Эффекты при наведении */
-.donate-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    border-color: rgba(255,255,255,0.3);
+.product-img-box {
+    height: 180px; background: #000; display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid #333; overflow: hidden;
 }
+.product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.product-card:hover img { transform: scale(1.1); }
 
-/* Стили для ПОПУЛЯРНОЙ карточки */
-.donate-card.popular {
-    transform: scale(1.05); /* Чуть больше остальных */
-    border: 1px solid var(--primary);
-    box-shadow: 0 0 20px rgba(255, 102, 0, 0.15);
-    background: linear-gradient(to bottom, rgba(30,30,35,0.95), rgba(20,20,25,0.95));
-    z-index: 2;
-}
+.product-info { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+.product-title { color: #fff; font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px; }
+.product-price { color: var(--primary); font-size: 1.5rem; font-weight: bold; font-family: 'Rajdhani'; margin-bottom: 15px; }
 
-.donate-card.popular:hover {
-    transform: scale(1.08) translateY(-10px);
-    box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+.buy-btn {
+    margin-top: auto; width: 100%; padding: 12px;
+    background: #222; border: 1px solid #444; color: #fff;
+    font-weight: bold; cursor: pointer; transition: 0.3s;
+    font-family: 'Orbitron';
 }
+.buy-btn:hover { background: #00ff41; color: #000; border-color: #00ff41; }
 
-/* Ленточка "ХИТ" */
-.ribbon {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: var(--primary);
-    color: #000;
-    padding: 5px 15px;
-    font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+/* МОДАЛЬНОЕ ОКНО */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+    display: none; justify-content: center; align-items: center; z-index: 9999;
 }
+.modal-overlay.active { display: flex; }
 
-/* Заголовок и цена */
-.card-top h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+.modal-window {
+    background: #111; border: 1px solid var(--primary);
+    width: 400px; max-width: 90%; text-align: center;
+    box-shadow: 0 0 50px rgba(255,102,0,0.2);
 }
+.modal-header {
+    background: var(--primary); color: #000; font-weight: bold; padding: 10px; font-family: 'Orbitron';
+}
+.modal-body { padding: 30px; }
+.modal-body img { width: 100px; margin-bottom: 15px; }
+.price-tag { font-size: 2rem; color: #00ff41; font-family: 'Orbitron'; margin: 10px 0; }
+.modal-warning { font-size: 0.8rem; color: #888; margin-top: 15px; }
 
-.price {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 20px;
-    font-weight: 900;
-}
-
-.popular .price {
-    color: var(--primary);
-    text-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
-}
-
-/* Список возможностей */
-.features-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
-    flex-grow: 1; /* Чтобы кнопка всегда была внизу */
-    text-align: left;
-}
-
-.features-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #ccc;
-    font-size: 0.95rem;
-}
-
-.features-list li:last-child {
-    border-bottom: none;
-}
-
-.features-list li.disabled {
-    color: #555;
-    text-decoration: line-through;
-}
-
-/* Кнопка */
-.btn-buy {
-    background: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    padding: 15px;
-    width: 100%;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-}
-
-.btn-buy:hover {
-    background: #fff;
-    color: #000;
-}
-
-.btn-glow {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #000;
-}
-
-.btn-glow:hover {
-    background: #ff8533;
-    border-color: #ff8533;
-    box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
-}
-
-/* Инфо внизу */
-.donate-info {
-    text-align: center;
-    color: #666;
-    font-size: 0.8rem;
-    margin-top: 30px;
-}
-
-@media (max-width: 768px) {
-    .donate-grid { flex-direction: column; }
-    .donate-card { width: 100%; max-width: 350px; }
-    .donate-card.popular { transform: none; }
-    .donate-card.popular:hover { transform: translateY(-10px); }
-}
-/* --- БЛОК РАЗРАБОТКИ (DEV SUPPORT) --- */
-
-.dev-support-wrapper {
-    margin: 60px 0 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.dev-card {
-    width: 100%;
-    max-width: 1000px; /* Широкий блок */
-    background: linear-gradient(135deg, rgba(30, 30, 35, 0.95), rgba(15, 15, 20, 0.98));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 5px solid var(--primary); /* Оранжевый акцент слева */
-    border-radius: 15px;
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-/* Контент слева */
-.dev-content {
-    flex: 1;
-    z-index: 2;
-    padding-right: 40px;
-}
-
-.dev-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.dev-header h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    margin: 0;
-    color: #fff;
-    text-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
-}
-
-.badge-dev {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--primary);
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border: 1px solid var(--primary);
-    font-family: 'Rajdhani', sans-serif;
-}
-
-.dev-desc {
-    color: #ccc;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-size: 1rem;
-}
-
-/* Прогресс бар (Цель) */
-.goal-container {
-    margin-bottom: 30px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.goal-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-.goal-numbers {
-    color: var(--primary);
-}
-
-.progress-track {
-    width: 100%;
-    height: 12px;
-    background: #111;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--primary); /* Оранжевый */
-    border-radius: 6px;
-    position: relative;
-    box-shadow: 0 0 15px var(--primary);
-}
-
-/* Блик на полоске */
-.progress-glow {
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: shine 2s infinite;
-}
-
-@keyframes shine {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(100%); }
-}
-
-/* Форма ввода и кнопка */
-.dev-action {
-    display: flex;
-    gap: 15px;
-}
-
-.dev-input {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 15px;
-    border-radius: 5px;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem;
-    width: 150px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.dev-input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
-}
-
-.btn-dev {
-    flex: 1;
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-}
-
-.btn-dev:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(255,255,255,0.2);
-}
-
-/* --- АНИМАЦИЯ ЯДРА (VISUAL CORE) --- */
-.visual-core {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0; /* Чтобы не сжималось */
-}
-
-/* Внешнее кольцо */
-.core-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    border-top-color: var(--primary);
-    border-bottom-color: var(--primary);
-    border-radius: 50%;
-    animation: spinCore 4s linear infinite;
-    box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
-}
-
-/* Внутреннее ядро */
-.core-inner {
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, #ff6600 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: pulseCore 2s ease-in-out infinite;
-}
-
-@keyframes spinCore {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes pulseCore {
-    0% { transform: scale(0.9); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px var(--primary); }
-    100% { transform: scale(0.9); opacity: 0.5; }
-}
-
-/* Адаптив для мобильных */
-@media (max-width: 900px) {
-    .dev-card { flex-direction: column-reverse; padding: 20px; text-align: center; }
-    .dev-content { padding-right: 0; }
-    .dev-header { justify-content: center; }
-    .visual-core { margin-bottom: 20px; transform: scale(0.8); }
-    .dev-action { flex-direction: column; }
-    .dev-input { width: 100%; }
-}
+.modal-footer { display: flex; }
+.btn-cancel, .btn-confirm { flex: 1; padding: 15px; border: none; cursor: pointer; font-weight: bold; font-family: 'Orbitron'; }
+.btn-cancel { background: #222; color: #fff; }
+.btn-cancel:hover { background: #333; }
+.btn-confirm { background: #00ff41; color: #000; }
+.btn-confirm:hover { background: #00cc33; }

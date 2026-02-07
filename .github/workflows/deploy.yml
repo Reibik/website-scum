@@ -1,0 +1,38 @@
+name: Deploy to VDS
+
+on:
+  push:
+    branches:
+      - main  # Сработает, когда ты запушишь в ветку main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to Server via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # 1. Переходим в папку проекта
+          cd /var/www/elon-project
+          
+          # 2. Скачиваем обновления с GitHub
+          # (Мы сбрасываем локальные изменения, чтобы не было конфликтов)
+          git fetch --all
+          git reset --hard origin/main
+          
+          # 3. Обновляем библиотеки (если добавили новые)
+          npm install --production
+          
+          # 4. Перезапускаем сервер (чтобы применился server.js)
+          pm2 restart elon-site
+          
+          echo "✅ DEPLOYMENT SUCCESSFUL!"

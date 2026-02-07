@@ -1,0 +1,264 @@
+/* assets/css/admin-style.css */
+
+/* --- ОСНОВНАЯ СЕТКА --- */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: #050505;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* --- САЙДБАР (МЕНЮ СЛЕВА) --- */
+.sidebar {
+    width: 280px;
+    background: #0a0a0c;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+}
+
+.admin-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+}
+.admin-logo span { color: var(--primary); }
+
+/* Профиль админа в меню */
+.admin-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 30px;
+}
+#adm-avatar {
+    width: 45px; height: 45px;
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    object-fit: cover;
+}
+.adm-info { display: flex; flex-direction: column; }
+.adm-name { font-weight: bold; font-size: 1rem; color: #fff; }
+
+/* Ссылки меню */
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #888;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-left: 3px solid transparent;
+    transition: 0.3s;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+}
+.menu-link.active {
+    background: linear-gradient(90deg, rgba(255, 102, 0, 0.1), transparent);
+    color: #fff;
+    border-left-color: var(--primary);
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: transparent;
+    color: #ff3333;
+    border: 1px solid #330000;
+    padding: 12px;
+    cursor: pointer;
+    font-family: 'Orbitron';
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+.logout-btn:hover {
+    background: #ff3333;
+    color: #000;
+}
+
+/* --- ОСНОВНОЙ КОНТЕНТ (СПРАВА) --- */
+.main-content {
+    margin-left: 280px;
+    padding: 40px 60px;
+    flex: 1;
+    width: calc(100% - 280px);
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+/* КАРТОЧКИ СТАТИСТИКИ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #0f0f12;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.stat-card:hover { transform: translateY(-2px); border-color: #555; }
+
+.stat-card h3 {
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 10px;
+}
+.live-dot {
+    display: inline-block; width: 8px; height: 8px;
+    background: #00ff41; border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 8px #00ff41;
+    animation: blink 2s infinite;
+}
+@keyframes blink { 50% { opacity: 0.5; } }
+
+/* ГРАФИК */
+.chart-container {
+    background: #0f0f12;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    height: 350px;
+    position: relative;
+}
+.chart-container::before {
+    content: "LIVE TRAFFIC MONITOR";
+    position: absolute; top: 10px; right: 20px;
+    font-size: 0.7rem; color: #444; font-family: 'Orbitron';
+}
+
+/* --- ФОРМЫ И ИНПУТЫ --- */
+.admin-input, select.admin-input, textarea.admin-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #333;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+.admin-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 102, 0, 0.05);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.1);
+}
+
+/* КНОПКИ (SCUM STYLE) */
+.admin-btn {
+    padding: 12px 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    transition: 0.3s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    letter-spacing: 1px;
+}
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Цвета кнопок */
+.btn-primary { background: var(--primary); color: #000; }
+.btn-primary:hover { background: #ff8533; }
+
+.btn-success { background: #00ff41; color: #000; }
+.btn-success:hover { background: #33ff66; box-shadow: 0 0 15px rgba(0,255,65,0.3); }
+
+.btn-danger { background: rgba(255,0,0,0.1); border: 1px solid #ff3333; color: #ff3333; }
+.btn-danger:hover { background: #ff3333; color: #000; }
+
+.btn-neon { background: #00d2ff; color: #000; }
+
+/* СПИСОК НОВОСТЕЙ */
+#adminNewsList div {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid #333 !important;
+    padding: 15px !important;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+#adminNewsList div:hover {
+    border-color: #555 !important;
+    background: rgba(255,255,255,0.05) !important;
+}
+
+/* РОЛИ (Бейджи) */
+.role-badge {
+    font-size: 0.7rem; padding: 2px 6px; border-radius: 3px;
+    text-transform: uppercase; font-weight: bold; letter-spacing: 1px;
+    display: inline-block; border: 1px solid transparent;
+}
+.role-admin { background: rgba(255, 0, 0, 0.15); color: #ff3333; border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); }
+
+/* --- ЭКРАН ВХОДА (GATEKEEPER) --- */
+.gatekeeper-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    flex-direction: column;
+}
+.gate-box { text-align: center; }
+.gate-box h2 { color: var(--primary); font-family: 'Orbitron'; margin-top: 20px; animation: blink 1s infinite; }
+.steam-btn {
+    display: inline-block; margin-top: 20px; padding: 10px 30px;
+    background: #171a21; color: #fff; text-decoration: none;
+    font-weight: bold; border: 1px solid #333; transition: 0.3s;
+    font-family: 'Orbitron'; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.steam-btn:hover { border-color: #66c0f4; color: #66c0f4; }
+.hidden { display: none !important; }
+
+/* СКРОЛЛБАР */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0a0c; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }

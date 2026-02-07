@@ -26,12 +26,7 @@
     <script defer src="assets/js/updater.js"></script>
     <link rel="stylesheet" href="assets/css/timer.css">
     <script defer src="assets/js/timer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-    <script src="assets/js/firebase-init.js"></script>
-    <script src="assets/js/tracker.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <div id="restart-bar" class="restart-bar">
@@ -49,6 +44,12 @@
         <div class="loader-text">ПОДКЛЮЧЕНИЕ К BCU...</div>
     </div>
     <header>
+	<div id="user-profile" class="user-profile">
+    <a href="/auth/steam" class="steam-login-btn">
+        <img src="assets/img/steam-icon.png" alt="Steam" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg'">
+        <span>ВОЙТИ</span>
+    </a>
+	</div>
     <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
 
     <div class="mobile-menu-btn" onclick="toggleMenu()">
@@ -62,7 +63,7 @@
 		<a href="status.html" class="nav-item"><span>📡 Статус</span></a>
 		<a href="map.html" class="nav-item"><span>🗺️ Карта</span></a>
 		<a href="news.html" class="nav-item"><span>📰 Новости</span></a>
-		<a href="media.html" class="nav-item"><span>📸 Медиа</span></a>
+		<!-- <a href="media.html" class="nav-item"><span>📸 Медиа</span></a> -->
 		<a href="faq.html" class="nav-item"><span>❓ FAQ</span></a>
 		<a href="staff.html" class="nav-item"><span>👥 Команда</span></a> 
 		<a href="rules.html" class="nav-item"><span>📜 Правила</span></a>

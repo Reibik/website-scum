@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личное Дело | ELON SCUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <script defer src="assets/js/ui.js"></script>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="assets/js/profile.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ELON <span>PROJECT</span></a>
+        <div class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <nav class="nav" id="mainNav">
+            <a href="index.html" class="nav-item"><span>🏠 Главная</span></a>
+            <a href="donate.html" class="nav-item"><span>💰 Магазин</span></a>
+            <a href="/logout" class="nav-item" style="color: #ff3333;">❌ Выйти</a>
+        </nav>
+    </header>
+
+    <main class="container profile-page">
+        
+        <h1 class="page-title">📂 ЛИЧНОЕ ДЕЛО ОПЕРАТИВНИКА</h1>
+
+        <div class="profile-container">
+            
+            <div class="profile-card sidebar-card">
+                <div class="avatar-frame">
+                    <img id="p-avatar" src="assets/img/default_avatar.png" alt="Avatar">
+                    <div class="status-badge online">ONLINE</div>
+                </div>
+                <h2 id="p-name">Загрузка...</h2>
+                <div class="role-badge" id="p-role">GUEST</div>
+                
+                <div class="balance-block">
+                    <span>БАЛАНС КОИНОВ</span>
+                    <div class="coin-value" id="p-balance">0 ₮</div>
+                    <a href="donate.html" class="top-up-btn">ПОПОЛНИТЬ</a>
+                </div>
+
+                <a href="admin.html" id="admin-entry-btn" class="admin-access-btn" style="display: none;">
+                    🛡️ COMMAND CENTER
+                </a>
+            </div>
+
+            <div class="profile-card info-card">
+                <h3 class="card-title">ИДЕНТИФИКАЦИЯ</h3>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">STEAM ID (64):</span>
+                        <span class="value" id="p-steamid">---</span>
+                        <button class="copy-btn" onclick="copySteamID()">COPY</button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="label">ДАТА РЕГИСТРАЦИИ:</span>
+                        <span class="value" id="p-regdate">---</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="label">ПОСЛЕДНИЙ ВХОД:</span>
+                        <span class="value" id="p-lastlogin">---</span>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3 class="card-title">ИСТОРИЯ ОПЕРАЦИЙ</h3>
+                <div class="history-placeholder">
+                    <p>История транзакций пока пуста.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bottom"><p>&copy; 2026 ELON SCUM PROJECT</p></div>
+    </footer>
+
+</body>
+</html>
