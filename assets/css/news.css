@@ -1,138 +1,146 @@
 /* assets/css/news.css */
 
-.news-page {
-    padding: 50px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 80vh;
-}
-
-.page-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
-}
-
-.page-subtitle {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 50px;
-    font-size: 1.2rem;
-}
-
 /* Сетка новостей */
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Адаптивные колонки */
     gap: 30px;
+    margin-top: 40px;
 }
 
 /* Карточка новости */
-.news-card {
-    background: rgba(20, 20, 25, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.news-item {
+    background: var(--bg-card); /* Темный фон из main.css */
+    border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    position: relative;
+    height: 100%; /* Чтобы карточки были одной высоты */
 }
 
-.news-card:hover {
+/* Эффект наведения */
+.news-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-color: #ff6600;
+    border-color: var(--primary); /* Оранжевая рамка */
 }
 
-/* Картинка новости (если есть) */
+/* Блок картинки */
 .news-image {
-    height: 200px;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
     position: relative;
-}
-
-.news-image::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(to top, rgba(20,20,25, 1), transparent);
+    height: 220px; /* Фиксированная высота картинки */
+    background: #000;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполнит блок, не искажаясь */
+    transition: transform 0.5s;
+}
+
+.news-item:hover .news-image img {
+    transform: scale(1.05); /* Зум картинки при наведении */
+}
+
+/* Категория (Бейдж) */
+.news-category {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+/* Цвета для разных категорий */
+.news-category.event { background: linear-gradient(135deg, #ff3333, #990000); box-shadow: 0 0 10px rgba(255, 51, 51, 0.5); }
+.news-category.update { background: linear-gradient(135deg, #00ff41, #008f11); box-shadow: 0 0 10px rgba(0, 255, 65, 0.5); color: #000; }
+.news-category.info { background: linear-gradient(135deg, #00d2ff, #006eff); box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+
+/* Контент карточки */
 .news-content {
     padding: 25px;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Растягивает блок, чтобы кнопки были внизу */
 }
 
-/* Бейджик категории */
-.news-badge {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    width: fit-content;
-}
-
-.badge-update { background: rgba(0, 210, 255, 0.2); color: #00d2ff; border: 1px solid #00d2ff; }
-.badge-event { background: rgba(255, 102, 0, 0.2); color: #ff6600; border: 1px solid #ff6600; }
-.badge-info { background: rgba(255, 255, 255, 0.1); color: #ccc; border: 1px solid #555; }
-
+/* Дата */
 .news-date {
-    font-size: 0.85rem;
-    color: #666;
+    color: var(--primary);
+    font-family: 'Rajdhani', monospace;
+    font-size: 0.9rem;
     margin-bottom: 10px;
-    display: block;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.news-date::before {
+    content: '📅'; 
+    filter: grayscale(1);
+    font-size: 0.8rem;
 }
 
-.news-card h2 {
+/* Заголовок */
+.news-content h3 {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.4rem;
-    margin-bottom: 15px;
+    color: var(--text-main);
+    margin: 0 0 15px 0;
     line-height: 1.3;
 }
 
-.news-card p {
+/* Текст новости */
+.news-content p {
     color: #bbb;
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1;
+    margin: 0;
+    /* Ограничение текста (многоточие, если слишком длинно) */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Максимум 4 строки */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Ссылка "Читать далее" */
-.read-more {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: 0.2s;
-    margin-top: auto;
+/* Декоративная линия внизу */
+.news-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
 }
 
-.read-more:hover {
-    color: #ff6600;
-    gap: 15px;
+.news-item:hover::after {
+    transform: scaleX(1);
 }
 
-/* Адаптив */
+/* Адаптив для мобильных */
 @media (max-width: 768px) {
-    .news-grid { grid-template-columns: 1fr; }
-    .page-title { font-size: 2.2rem; }
+    .news-grid {
+        grid-template-columns: 1fr; /* Одна колонка на телефоне */
+    }
+    .news-image {
+        height: 200px;
+    }
 }

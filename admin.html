@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BCU COMMAND CENTER | ELON PROJECT</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* --- СТИЛИ АДМИНКИ --- */
+        body { margin: 0; padding: 0; background: #050505; color: #fff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+        
+        /* Логин */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .login-box {
+            background: #111; border: 1px solid var(--primary); padding: 40px; width: 350px;
+            text-align: center; border-radius: 10px; box-shadow: 0 0 50px rgba(255, 102, 0, 0.2);
+        }
+        .login-box input {
+            display: block; width: 100%; padding: 12px; margin: 15px 0;
+            background: #222; border: 1px solid #444; color: #fff; font-family: 'Orbitron';
+        }
+        .login-box button { width: 100%; padding: 12px; background: var(--primary); border: none; font-weight: bold; cursor: pointer; color: #000; }
+
+        /* --- ЛЕЙАУТ --- */
+        .admin-wrapper { display: none; min-height: 100vh; }
+
+        /* Сайдбар */
+        .sidebar {
+            width: 260px;
+            background: #0a0a0c;
+            border-right: 1px solid #333;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            font-family: 'Orbitron'; font-size: 1.5rem; color: #fff; margin-bottom: 40px; text-align: center;
+        }
+        .admin-logo span { color: var(--primary); }
+
+        .menu-link {
+            display: block; padding: 15px; color: #888; text-decoration: none;
+            border-left: 3px solid transparent; transition: 0.3s; font-size: 1.1rem; margin-bottom: 5px;
+        }
+        .menu-link:hover, .menu-link.active {
+            background: rgba(255, 255, 255, 0.05); color: #fff; border-left-color: var(--primary);
+        }
+
+        .logout-btn {
+            margin-top: auto; background: #1a0505; color: #ff3333; border: 1px solid #330000;
+            padding: 12px; cursor: pointer; text-align: center; font-weight: bold;
+        }
+        .logout-btn:hover { background: #ff3333; color: #000; }
+
+        /* Контент */
+        .main-content { margin-left: 260px; padding: 40px; flex: 1; width: calc(100% - 260px); }
+        section { margin-bottom: 60px; scroll-margin-top: 20px; }
+        .section-title {
+            font-family: 'Orbitron'; font-size: 1.8rem; color: #fff;
+            border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 25px;
+        }
+
+        /* Карточки */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .stat-card { background: #0f0f12; border: 1px solid #333; padding: 25px; border-radius: 8px; position: relative; }
+        .stat-card h3 { color: #666; font-size: 0.9rem; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-value { font-size: 2.5rem; font-weight: bold; color: #fff; font-family: 'Orbitron'; margin-top: 10px; }
+        
+        .live-dot { width: 10px; height: 10px; background: #00ff41; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 10px #00ff41; animation: blink 2s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Элементы управления */
+        .admin-input { width: 100%; padding: 12px; background: #151518; border: 1px solid #333; color: #fff; margin-bottom: 10px; font-family: 'Rajdhani'; }
+        .admin-btn { padding: 12px 25px; background: var(--primary); border: none; color: #000; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .admin-btn:hover { box-shadow: 0 0 15px var(--primary); }
+
+        .switch { position: relative; display: inline-block; width: 50px; height: 24px; vertical-align: middle; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #ff3333; }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        .chart-container { background: #0f0f12; padding: 20px; border: 1px solid #333; border-radius: 8px; height: 350px; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2 style="color: var(--primary); margin-bottom: 20px;">SECURITY ACCESS</h2>
+            <input type="email" id="adminEmail" placeholder="Admin Email">
+            <input type="password" id="adminPass" placeholder="Password">
+            <button onclick="adminLogin()">INITIALIZE LINK</button>
+            <p id="loginError" style="color: red; margin-top: 10px; font-size: 0.8rem;"></p>
+        </div>
+    </div>
+
+    <div class="admin-wrapper" id="dashboard-wrapper">
+        
+        <aside class="sidebar">
+            <div class="admin-logo">BCU <span>ADMIN</span></div>
+            <nav>
+                <a href="#section-stats" class="menu-link active">📊 Мониторинг</a>
+                <a href="#section-content" class="menu-link">📰 Контент</a>
+                <a href="#section-visuals" class="menu-link">👁️ Визуал & Связь</a>
+                <a href="#section-system" class="menu-link">⚠️ Система</a>
+            </nav>
+            <button class="logout-btn" onclick="firebase.auth().signOut()">ОТКЛЮЧИТЬСЯ</button>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="section-stats">
+                <h2 class="section-title">REAL-TIME STATISTICS</h2>
+                <div class="stats-grid">
+                    <div class="stat-card" style="border-color: #00ff41;">
+                        <h3><span class="live-dot"></span>Website Visitors</h3>
+                        <div class="stat-value" id="liveVisitors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>SCUM SERVER #1 [PvE]</h3>
+                        <div class="stat-value"><span id="server1Online">--</span> <span style="font-size: 1rem; color: #666;">/ 64</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>SCUM SERVER #2 [PvP]</h3>
+                        <div class="stat-value"><span id="server2Online">--</span> <span style="font-size: 1rem; color: #666;">/ 64</span></div>
+                    </div>
+                </div>
+                <div class="chart-container" style="margin-top: 20px;">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+            </section>
+
+            <section id="section-content">
+                <h2 class="section-title">CONTENT MANAGEMENT</h2>
+                <div class="stat-card" style="margin-bottom: 30px;">
+                    <h3>📢 Бегущая строка (Ticker)</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <input type="text" id="tickerInput" class="admin-input" placeholder="Текст оповещения..." style="margin: 0;">
+                        <button class="admin-btn" onclick="updateTicker()">Обновить</button>
+                    </div>
+                    <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">Активно: <span id="currentTicker" style="color: #fff;">...</span></p>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: 2fr 1fr;">
+                    <div class="stat-card">
+                        <h3>📝 Создать новость</h3>
+                        <div style="margin-top: 15px; display: grid; gap: 10px;">
+                            <input type="text" id="newsTitle" class="admin-input" placeholder="Заголовок">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="date" id="newsDate" class="admin-input">
+                                <select id="newsCategory" class="admin-input">
+                                    <option value="update">Обновление</option>
+                                    <option value="event">Ивент</option>
+                                    <option value="info">Инфо</option>
+                                </select>
+                            </div>
+                            <input type="text" id="newsImage" class="admin-input" placeholder="Ссылка на картинку...">
+                            <textarea id="newsText" class="admin-input" rows="5" placeholder="Текст..."></textarea>
+                            <button class="admin-btn" onclick="addNews()">Опубликовать</button>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🗑️ Новости</h3>
+                        <div id="adminNewsList" style="margin-top: 15px; height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-visuals">
+                <h2 class="section-title">VISUAL PROTOCOLS & UPLINK</h2>
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
+                    
+                    <div class="stat-card">
+                        <h3>🎨 Global Atmosphere Control</h3>
+                        <p style="color: #888; font-size: 0.8rem; margin-bottom: 15px;">Смена визуала у всех игроков.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button onclick="setAtmosphere('default')" class="admin-btn" style="background: #222; border: 1px solid #444; color: #fff;">DEFAULT</button>
+                            <button onclick="setAtmosphere('red-alert')" class="admin-btn" style="background: rgba(255,0,0,0.2); border: 1px solid #ff0000; color: #ff0000;">🚨 RED ALERT</button>
+                            <button onclick="setAtmosphere('toxic')" class="admin-btn" style="background: rgba(0,255,0,0.1); border: 1px solid #00ff41; color: #00ff41;">☣️ TOXIC</button>
+                            <button onclick="setAtmosphere('glitch')" class="admin-btn" style="background: #00d2ff; color: #000;">⚡ GLITCH</button>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">Текущий статус: <span id="currentAtmosphere" style="color: #fff; font-weight: bold;">NORMAL</span></p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>📡 Discord Webhook Uplink</h3>
+                        <p style="color: #888; font-size: 0.8rem; margin-bottom: 15px;">Отправка в канал Discord.</p>
+                        <input type="password" id="discordWebhook" class="admin-input" placeholder="Webhook URL...">
+                        <input type="text" id="discordMsg" class="admin-input" placeholder="Сообщение...">
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="sendToDiscord('info')" class="admin-btn" style="flex: 1; background: #5865F2;">INFO</button>
+                            <button onclick="sendToDiscord('alert')" class="admin-btn" style="flex: 1; background: #ff3333;">ALERT</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-system">
+                <h2 class="section-title" style="color: #ff3333; border-color: #ff3333;">DANGER ZONE</h2>
+                <div class="stats-grid">
+                    <div class="stat-card" style="border: 1px solid #ff3333; background: rgba(255,0,0,0.05);">
+                        <h3 style="color: #ff3333;">🔒 MAINTENANCE MODE</h3>
+                        <div style="display: flex; align-items: center; gap: 15px; margin-top: 15px;">
+                            <label class="switch">
+                                <input type="checkbox" id="maintenanceToggle" onchange="toggleMaintenance()">
+                                <span class="slider round"></span>
+                            </label>
+                            <span id="maintenanceStatus" style="font-weight: bold;">OFFLINE</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="border: 1px solid #ffcc00; background: rgba(255,200,0,0.05);">
+                        <h3 style="color: #ffcc00;">🚀 GLOBAL ALERT</h3>
+                        <input type="text" id="alertText" class="admin-input" placeholder="Текст сообщения..." style="margin-top: 10px;">
+                        <button class="admin-btn" style="background: #ffcc00; width: 100%;" onclick="sendGlobalAlert()">ОТПРАВИТЬ ВСЕМ</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="assets/js/firebase-init.js"></script>
+    <script src="assets/js/admin-core.js"></script>
+</body>
+</html>

@@ -19,7 +19,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <script defer src="assets/js/news.js"></script>
     <script defer src="assets/js/ui.js"></script>
 	<script defer src="assets/js/seasons.js"></script>
 	<script defer src="assets/js/desktop-fx.js"></script>
@@ -56,7 +55,7 @@
 		<a href="index.html" class="nav-item"><span>🏠 Главная</span></a>
 		<a href="status.html" class="nav-item"><span>📡 Статус</span></a>
 		<a href="map.html" class="nav-item"><span>🗺️ Карта</span></a>
-		<a href="news.html" class="nav-item"><span>📰 Новости</span></a>
+		<a href="news.html" class="nav-item active"><span>📰 Новости</span></a>
 		<a href="media.html" class="nav-item"><span>📸 Медиа</span></a>
 		<a href="faq.html" class="nav-item"><span>❓ FAQ</span></a>
 		<a href="staff.html" class="nav-item"><span>👥 Команда</span></a> 
@@ -65,9 +64,16 @@
 		<a href="https://discord.com/invite/tkCmnaQRdX" target="_blank" class="nav-item discord-btn"><span>💬 Discord</span></a>
 	</nav>
 
-    <div class="wargm-buttons">
-        <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
-        <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
+    <div class="header-right" style="display: flex; align-items: center;">
+            <button id="theme-toggle" class="theme-btn" aria-label="Переключить тему">
+                <span class="icon-moon">🌙</span>
+                <span class="icon-sun">☀</span>
+            </button>
+
+            <div class="wargm-buttons">
+                <a href='https://wargm.ru/server/71882' target="_blank"><img src='https://wargm.ru/primg88/71882.png' alt='Rating 1'></a>
+                <a href='https://wargm.ru/server/77278' target="_blank"><img src='https://wargm.ru/primg88/77278.png' alt='Rating 2'></a>
+            </div>
     </div>
 </header>
 
@@ -75,7 +81,12 @@
         <h1 class="page-title">📰 Новости проекта</h1>
         <p class="page-subtitle">Последние события, обновления и вайпы</p>
 
-        <div class="news-grid" id="newsGrid"></div>
+        <div class="news-grid" id="publicNewsContainer">
+             <div style="text-align: center; color: #888; margin-top: 50px;">
+                 <div class="loader-ring" style="width: 30px; height: 30px; margin: 0 auto 10px;"></div>
+                 ЗАГРУЗКА ДАННЫХ ИЗ BCU NETWORK...
+             </div>
+        </div>
     </main>
 
     <footer class="site-footer">
@@ -116,5 +127,56 @@
     </div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="assets/js/firebase-init.js"></script>
+<script src="assets/js/tracker.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('publicNewsContainer');
+        
+        // Читаем новости из базы
+        if (typeof firebase !== 'undefined') {
+            firebase.database().ref('news').orderByChild('timestamp').once('value', (snap) => {
+                container.innerHTML = ""; // Убираем лоадер
+                
+                if (!snap.exists()) {
+                    container.innerHTML = "<div style='grid-column: 1/-1; text-align:center; color:#666; padding: 50px;'><h3>НЕТ АКТИВНЫХ ДАННЫХ</h3><p>Система BCU не обнаружила новостных записей.</p></div>";
+                    return;
+                }
+
+                // Массив для сбора новостей, чтобы потом перевернуть его (новые сверху)
+                const newsArray = [];
+                snap.forEach((child) => {
+                    newsArray.push(child.val());
+                });
+                
+                // Переворачиваем массив (Reverse), чтобы новые были первыми
+                newsArray.reverse().forEach((post) => {
+                    const card = document.createElement('article');
+                    card.className = 'news-item';
+                    
+                    // Если картинки нет, ставим стандартную заглушку SCUM
+                    const imageUrl = post.image ? post.image : 'https://i.postimg.cc/L4TtXw7n/Gemini-Generated-Image-vvg9bpvvg9bpvvg9.png';
+                    
+                    card.innerHTML = `
+                        <div class="news-image">
+                            <img src="${imageUrl}" alt="${post.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200?text=NO+IMAGE'">
+                            <div class="news-category ${post.category}">${post.category}</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">${post.date}</div>
+                            <h3>${post.title}</h3>
+                            <p>${post.text}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            });
+        }
+    });
+</script>
 </body>
 </html>
